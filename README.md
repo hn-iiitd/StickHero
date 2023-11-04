@@ -1,3 +1,3 @@
 # StickHero
 
-NANGIA bhai ke aage koi bol skta hai kya\NANGIA BHAIIIIIIII
+NANGIA bhai ke aage koi bol skta hai kya/NANGIA BHAIIIIIIII
