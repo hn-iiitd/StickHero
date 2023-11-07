@@ -14,8 +14,13 @@ public class Main extends Application {
     @Override
 
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        //----to_add_css-----
+//        String css = this.getClass().getResource("Style.css").toExternalForm();
+//        scene.getStylesheets().add(css);
+        //----------------------------
+
 
         stage.setTitle("StickHero");
         Image icon = new Image("unnamed.png");
@@ -23,7 +28,7 @@ public class Main extends Application {
         stage.getIcons().add(icon);
         stage.setHeight(520);
         stage.setWidth(460);
-        stage.setResizable(false);
+//        stage.setResizable(false);
         stage.setScene(scene);
 
         stage.show();
