@@ -3,12 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.HelloController">
    <children>
-      <Button layoutX="116.0" layoutY="14.0" mnemonicParsing="false" text="UP" />
-      <Button layoutX="217.0" layoutY="205.0" mnemonicParsing="false" text="RIGHT" />
-      <Button layoutX="14.0" layoutY="205.0" mnemonicParsing="false" text="LEFT" />
-      <Button layoutX="126.0" layoutY="395.0" mnemonicParsing="false" text="DOWN" />
+      <Button layoutX="116.0" layoutY="14.0" mnemonicParsing="false" onAction="#up" onMouseMoved="#up" text="UP" />
+      <Button layoutX="217.0" layoutY="205.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
+      <Button layoutX="14.0" layoutY="205.0" mnemonicParsing="false" onAction="#left" text="LEFT" />
+      <Button layoutX="126.0" layoutY="395.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
    </children>
 </AnchorPane>
