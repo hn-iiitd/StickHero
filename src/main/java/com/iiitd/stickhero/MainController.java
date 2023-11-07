@@ -2,9 +2,8 @@ package com.iiitd.stickhero;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
-public class HelloController {
+public class MainController {
     @FXML
     public void up(ActionEvent e){
         System.out.println("UP");
