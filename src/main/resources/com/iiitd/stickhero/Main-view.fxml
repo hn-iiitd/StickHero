@@ -6,11 +6,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.MainController">
    <children>
-      <Button layoutX="164.0" layoutY="34.0" mnemonicParsing="false" onAction="#up" text="Up" />
-      <Button layoutX="296.0" layoutY="183.0" mnemonicParsing="false" onAction="#right" text="RIGHT" />
-      <Button layoutX="21.0" layoutY="183.0" mnemonicParsing="false" onAction="#left" text="LEFT" />
-      <Button layoutX="153.0" layoutY="326.0" mnemonicParsing="false" onAction="#down" text="DOWN" />
-      <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="183.0" layoutY="183.0" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle fx:id="stick1" arcHeight="5.0" arcWidth="5.0" fill="#402609" height="2.0" layoutX="173.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" width="14.0" />
+      <Button layoutX="307.0" layoutY="140.0" mnemonicParsing="false" onKeyPressed="#keycode" text="UP" />
+      <Button layoutX="307.0" layoutY="219.0" mnemonicParsing="false" onKeyPressed="#keycode" text="Down" />
       <Button layoutX="154.0" layoutY="402.0" mnemonicParsing="false" onAction="#switchToScene2" text="Scene 2" />
    </children>
 </AnchorPane>

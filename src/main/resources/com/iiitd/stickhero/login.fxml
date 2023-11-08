@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="343.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.SceneController">
+   <children>
+      <Button alignment="CENTER" contentDisplay="BOTTOM"  layoutX="117.0" layoutY="288.0" mnemonicParsing="false"  onAction="#switchToScene1" prefHeight="57.0" prefWidth="109.0" style="--body-background-color: BLACK" text="PLAY" textAlignment="CENTER" textFill="#e72f2f" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Nirmala UI" size="23.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

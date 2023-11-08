@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.Main2Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.MainController">
    <children>
       <Label layoutX="184.0" layoutY="23.0" prefHeight="18.0" prefWidth="110.0" text="This is scene 2" />
       <Button layoutX="213.0" layoutY="337.0" mnemonicParsing="false" onAction="#switchToScene1" text="Scene1" />
