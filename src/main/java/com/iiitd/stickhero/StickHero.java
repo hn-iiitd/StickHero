@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Main extends Application {
+public class StickHero extends Application {
     private TreeMap<Integer,Player> leaderboard; //pos and player
 
     private static ArrayList<Player> playerArrayList = new ArrayList<>(); //ArrayList of all players
