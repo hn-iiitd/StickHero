@@ -1,9 +1,11 @@
 package com.iiitd.stickhero;
 
 public class Player {
+    private String Name;
 
     private int player_currentScore;
     private int player_highestScore = 0;
+
 
     public int getPlayer_currentScore() {
         return player_currentScore;
