@@ -1,8 +1,9 @@
 package com.iiitd.stickhero;
-public class StickHero {
+public abstract class Character {
     private boolean hero_flipped = false;
     private int lives_available = 0;
     private int number_of_cherries = 0;
+
 
 
 }
