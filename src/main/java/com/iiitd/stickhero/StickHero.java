@@ -12,11 +12,10 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StickHero extends Application {
-    private TreeMap<Integer,Player> leaderboard; //pos and player
 
-    private static ArrayList<Player> playerArrayList = new ArrayList<>(); //ArrayList of all players
+    private static ArrayList<Player> leaderBoard = new ArrayList<>(); //ArrayList of all players in order of rank
 
-
+    //player_selects_character --create method
 
     @Override
 

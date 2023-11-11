@@ -1,6 +1,7 @@
 package com.iiitd.stickhero;
 
 public class Platform {
+    //implement platform design
     private int platform_height;
     private int platform_width;
 

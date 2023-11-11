@@ -1,11 +1,29 @@
 package com.iiitd.stickhero;
 
 public class Player {
-    private String Name;
+    private String name;
 
-    private int player_currentScore;
-    private int player_highestScore = 0;
+    public Player(String name, String userId, String password) {
+        this.name = name;
+        this.userId = userId;
+        this.password = password;
+    }
 
+    private String userId;
+    private String password;
+
+    private int player_currentScore = 0;
+    private int player_highestScore = 0 ;
+
+    private int number_of_lives = 0;
+
+    public int getNumber_of_lives() {
+        return number_of_lives;
+    }
+
+    public void setNumber_of_lives(int number_of_lives) {
+        this.number_of_lives = number_of_lives;
+    }
 
     public int getPlayer_currentScore() {
         return player_currentScore;

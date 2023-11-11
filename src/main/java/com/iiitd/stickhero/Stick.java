@@ -14,6 +14,7 @@ public class Stick {
         stick = new Rectangle();
         stick.setWidth(stick_width);
         stick.setHeight(stick_size);
+        setStick(stick);
     }
 
     //-----methods-----\\
@@ -27,16 +28,14 @@ public class Stick {
         this.stick = stick;
     }
 
-    public int getStick_width() {
-        return stick_width;
+
+
+
+    public double getStick_size() {
+        return this.stick.getHeight(); //confirm if getY or getHeight
     }
 
-
-    public int getStick_size() {
-        return stick_size;
-    }
-
-    public void setStick_size(int stick_size) {
-        this.stick_size = stick_size;
+    public void setStick_size(double stick_size) {
+        this.stick.setHeight(stick_size);
     }
 }
