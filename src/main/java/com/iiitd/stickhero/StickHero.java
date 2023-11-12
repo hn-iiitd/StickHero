@@ -32,11 +32,14 @@ public class StickHero extends Application {
         Image icon = new Image("unnamed.png");
 
         stage.getIcons().add(icon);
-        stage.setHeight(520);
-        stage.setWidth(460);
+        stage.setHeight(600);
+        stage.setWidth(463);
 //        stage.setResizable(false);
+
         stage.setScene(scene);
 
+        stage.setResizable(false);
+//        stage.sets;
         stage.show();
 
     }
