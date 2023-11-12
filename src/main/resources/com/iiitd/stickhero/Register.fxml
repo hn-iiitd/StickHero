@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.RegisterController">
+    <children>
+        <TextField layoutX="157.0" layoutY="244.0" promptText="Email ID"/>
+        <TextField layoutX="157.0" layoutY="291.0" promptText="User ID"/>
+        <TextField layoutX="157.0" layoutY="336.0" promptText="Password"/>
+        <TextField layoutX="157.0" layoutY="373.0" promptText="Confirm Password"/>
+        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="157.0" layoutY="60.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../profile.png"/>
+            </image>
+        </ImageView>
+        <Button layoutX="200.0" layoutY="440.0" mnemonicParsing="false" onAction="#switchTologin" text="SIGN-UP"/>
+    </children>
+</AnchorPane>
