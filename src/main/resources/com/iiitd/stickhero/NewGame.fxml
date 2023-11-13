@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="593.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
+   <children>
+      <ImageView fitHeight="513.0" fitWidth="463.0" layoutY="-2.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../background-scenery-design-for-game-vector-14922538.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#070613eb" height="82.0" layoutY="511.0" stroke="BLACK" strokeType="INSIDE" width="463.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="1.0" layoutY="426.0" stroke="BLACK" width="90.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="140.0" layoutX="306.0" layoutY="452.0" stroke="BLACK" width="92.0" />
+      <ImageView fitHeight="34.0" fitWidth="35.0" layoutX="46.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../StickHero.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="205.0" layoutY="61.0" prefHeight="46.0" prefWidth="53.0" text="0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000026" height="46.0" layoutX="192.0" layoutY="61.0" mouseTransparent="true" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
+      <Label alignment="CENTER" layoutX="84.0" layoutY="117.0" prefHeight="34.0" prefWidth="294.0" text="Hold your Finger on screen to strech out the stick" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font></Label>
+      <ImageView fitHeight="34.0" fitWidth="28.0" layoutX="414.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../pngtree-flat-vector-cherries-cartoon-red-cherry-fruit-illustration-isolated-png-image_2506424-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="407.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToMenu" text="Back" />
+   </children>
+</AnchorPane>

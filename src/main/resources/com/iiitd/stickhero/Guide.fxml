@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="463.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../login_back%20(1).png" />
+            <Image url="@../../../login_back (1).png" />
          </image>
       </ImageView>
       <TextArea editable="false" layoutX="62.0" layoutY="74.0" prefHeight="412.0" prefWidth="339.0" text="THE GUIDE WILL COME HERE" />

@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="463.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../login_back%20(1).png" />
+            <Image url="@../../../login_back (1).png" />
          </image>
       </ImageView>
       <GridPane hgap="25.0" layoutX="80.0" layoutY="110.0" prefHeight="283.0" prefWidth="314.0">
