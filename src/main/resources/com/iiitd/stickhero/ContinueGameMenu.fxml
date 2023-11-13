@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.ContinueGameMenuController">
+   <children>
+      <ImageView fitHeight="602.0" fitWidth="463.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../login_back(2).jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
+      <ImageView fitHeight="198.0" fitWidth="223.0" layoutX="120.0" layoutY="189.0" opacity="0.78" pickOnBounds="true">
+         <image>
+            <Image url="@../../../background-scenery-design-for-game-vector-14922538.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0000002c" height="83.0" layoutX="132.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="84.0" prefHeight="38.0" prefWidth="166.0" text="SAVED">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+      <Button alignment="CENTER" layoutX="170.0" layoutY="329.0" mnemonicParsing="false" onAction="#switchToSavedGame" prefHeight="44.0" prefWidth="123.0" text="Continue">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <ImageView fitHeight="54.0" fitWidth="62.0" layoutX="278.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../%5Bremoval.ai%5D_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="262.0" layoutY="203.0" text="1" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="73.0" fitWidth="83.0" layoutX="182.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../StickHero.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

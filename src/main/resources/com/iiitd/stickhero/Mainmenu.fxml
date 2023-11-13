@@ -23,7 +23,7 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#switchToNewGame" prefHeight="77.0" prefWidth="193.0" text="NEW GAME" textAlignment="CENTER" />
-            <Button mnemonicParsing="false" prefHeight="74.0" prefWidth="188.0" text="CONTINUE" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#switchtoContinue" prefHeight="74.0" prefWidth="188.0" text="CONTINUE" GridPane.columnIndex="1" />
             <Button mnemonicParsing="false" prefHeight="83.0" prefWidth="203.0" text="CHANGE CHARACTER" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#switchToOption" prefHeight="85.0" prefWidth="190.0" text="OPTIONS" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
