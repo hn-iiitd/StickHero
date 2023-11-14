@@ -50,7 +50,6 @@ public class StickHero extends Application {
     }
 }
 class DataBase{
-
     private GameMain game;
 
     public GameMain getGame() {
