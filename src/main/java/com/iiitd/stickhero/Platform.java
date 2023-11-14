@@ -1,6 +1,9 @@
 package com.iiitd.stickhero;
 
-public class Platform {
+import javafx.scene.shape.Rectangle;
+
+public class Platform extends GameMain {
+    private Rectangle r1;
     //implement platform design
     private int platform_height;
     private int platform_width;

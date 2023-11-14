@@ -1,5 +1,16 @@
 package com.iiitd.stickhero;
 
-public class Char1 extends Character{
+import javafx.scene.Group;
+import javafx.scene.shape.Shape;
 
+public class Char1 extends Character{
+    private static Group charBody;
+
+    public static Group getCharBody() {
+        return charBody;
+    }
+
+    public void setCharBody(Group charBody) {
+        charBody = charBody;
+    }
 }

@@ -44,7 +44,20 @@ public class StickHero extends Application {
 
     }
 
+
     public static void main(String[] args) {
         launch();
+    }
+}
+class DataBase{
+
+    private GameMain game;
+
+    public GameMain getGame() {
+        return game;
+    }
+
+    public void setGame(GameMain game) {
+        this.game = game;
     }
 }

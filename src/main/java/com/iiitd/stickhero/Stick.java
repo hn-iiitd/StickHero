@@ -2,7 +2,7 @@ package com.iiitd.stickhero;
 
 import javafx.scene.shape.Rectangle;
 
-public class Stick {
+public class Stick extends GameMain{
     //-----attributes-----\\
     private int stick_size = 0;
     private final int stick_width = 15;

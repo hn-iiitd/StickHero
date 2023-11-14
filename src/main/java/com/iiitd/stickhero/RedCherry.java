@@ -5,13 +5,15 @@ public class RedCherry implements RewardCherries {
     private int position;
 
 
+
+
     @Override
-    public void remove_cherry() {
+    public void hide_cherry() {
 
     }
 
     @Override
-    public void add_cherry(int position) {
+    public void show_cherry(int position) {
 
     }
 }

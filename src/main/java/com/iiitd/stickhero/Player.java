@@ -1,6 +1,6 @@
 package com.iiitd.stickhero;
 
-public class Player {
+public class Player{
     private String name;
 
     public Player(String name, String userId, String password) {
