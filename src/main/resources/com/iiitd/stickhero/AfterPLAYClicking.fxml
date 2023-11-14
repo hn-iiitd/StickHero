@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.MainmenuController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="463.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../login_back%20(1).png" />
+         </image>
+      </ImageView>
+      <Button layoutX="160.0" layoutY="128.0" mnemonicParsing="false" onAction="#switchToNewGame" prefHeight="62.0" prefWidth="143.0" style="-fx-background-radius: 23; -fx-background-color: #ff8600;" text="NEW GAME" />
+      <Button layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#switchtoContinue" prefHeight="62.0" prefWidth="143.0" style="-fx-background-radius: 23; -fx-background-color: #ff9200;" text="SAVED GAMES" />
+   </children>
+</AnchorPane>
