@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="167.0" layoutY="437.0" stroke="BLACK" width="90.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="140.0" layoutX="313.0" layoutY="464.0" stroke="BLACK" width="92.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="312.0" layoutY="437.0" stroke="BLACK" width="93.0" />
       <ImageView fitHeight="34.0" fitWidth="35.0" layoutX="52.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../StickHero.png" />
@@ -36,12 +36,12 @@
          </image>
       </ImageView>
       <Label layoutX="407.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToMenu" text="Back" />
       <ImageView fitHeight="34.0" fitWidth="28.0" layoutX="364.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../%5Bremoval.ai%5D_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png" />
          </image>
       </ImageView>
       <Label layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="87.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" width="2.0" />
    </children>
 </AnchorPane>
