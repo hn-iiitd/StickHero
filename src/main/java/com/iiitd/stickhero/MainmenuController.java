@@ -42,7 +42,6 @@ public class MainmenuController
         stage.setScene(scene);
         stage.show();
 
-//        System.out.println("Switching to new game!");
     }
     @FXML
     public void switchToNewGame(ActionEvent event) throws IOException {
