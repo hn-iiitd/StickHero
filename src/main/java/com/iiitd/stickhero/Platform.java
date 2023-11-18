@@ -2,18 +2,13 @@ package com.iiitd.stickhero;
 
 import javafx.scene.shape.Rectangle;
 
-public class Platform extends GameMain {
+public class Platform implements GameComponents {
     private Rectangle r1;
     //implement platform design
-    private int platform_height;
     private int platform_width;
 
-    public void setPlatform_height(int platform_height) {
-        this.platform_height = platform_height;
-    }
 
-    public Platform(int platform_height, int platform_width) {
-        this.platform_height = platform_height;
+    public Platform( int platform_width) {
         this.platform_width = platform_width;
     }
 
@@ -25,7 +20,14 @@ public class Platform extends GameMain {
         this.platform_width = platform_width;
     }
 
-    public int getPlatform_height() {
-        return platform_height;
+
+    @Override
+    public void setPosi(double posi) {
+
+    }
+
+    @Override
+    public double getPosi() {
+        return 0;
     }
 }

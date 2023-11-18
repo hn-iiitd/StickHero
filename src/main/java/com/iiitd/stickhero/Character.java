@@ -1,18 +1,18 @@
 package com.iiitd.stickhero;
 public abstract class Character extends GameMain {
-    private boolean hero_flip = false; //if flipping is possible
+    private boolean can_hero_flip = false; //if flipping is possible
     private boolean isHero_up = true; //if hero up or down
 
-    public static void flip_character(){
+    public void flip_character(){
 
     }
 
-    public boolean isHero_flip() {
-        return hero_flip;
+    public boolean can_Hero_flip() {
+        return can_hero_flip;
     }
 
-    public void setHero_flip(boolean hero_flip) {
-        this.hero_flip = hero_flip;
+    public void set_can_Hero_flip(boolean hero_flip) {
+        this.can_hero_flip = hero_flip;
     }
 
     public boolean isHero_up() {

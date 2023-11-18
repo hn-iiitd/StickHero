@@ -5,7 +5,7 @@ import java.io.*;
 public class GameMain implements Serializable {
 
     private Player p1;
-    public void startGame(Player p1){
+    public static void startGame(Player p1){
         setP1(p1);
 
     }
@@ -46,8 +46,7 @@ public class GameMain implements Serializable {
         return p1;
     }
 
-    public void setP1(Player p1) {
-        this.p1 = p1;
+    public static void setP1(Player p1) {
     }
 
     public static void generateNew_stick(){
@@ -58,10 +57,10 @@ public class GameMain implements Serializable {
     }
     public static void showRedCherry(int posi){
         RewardCherries c1 = new RedCherry();
-        c1.show_cherry(posi);
+        c1.show_component(posi);
     } public static void showBlueCherry(int posi){
         RewardCherries c1 = new BlueCherry();
-        c1.show_cherry(posi);
+        c1.show_component(posi);
     }
     public static void genStick(){
 

@@ -2,11 +2,12 @@ package com.iiitd.stickhero;
 
 import javafx.scene.shape.Rectangle;
 
-public class Stick extends GameMain{
+public class Stick implements GameComponents{
     //-----attributes-----\\
     private int stick_size = 0;
     private final int stick_width = 15;
     private Rectangle stick;
+    private double posi;
 
 
     //-----constructor-----\\
@@ -24,7 +25,7 @@ public class Stick extends GameMain{
         return stick;
     }
 
-    public void setStick(Rectangle stick) {
+    private void setStick(Rectangle stick) {
         this.stick = stick;
     }
 
@@ -37,5 +38,17 @@ public class Stick extends GameMain{
 
     public void setStick_size(double stick_size) {
         this.stick.setHeight(stick_size);
+    }
+
+
+
+    @Override
+    public void setPosi(double posi) {
+
+    }
+
+    @Override
+    public double getPosi() {
+        return 0;
     }
 }

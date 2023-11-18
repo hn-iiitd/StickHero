@@ -1,7 +1,7 @@
 package com.iiitd.stickhero;
 
-public interface RewardCherries {
-    public void hide_cherry();
-    public void show_cherry(int position);
+public interface RewardCherries extends GameComponents {
+    public void hide_component();
+    public void show_component(double posi);
 
 }
