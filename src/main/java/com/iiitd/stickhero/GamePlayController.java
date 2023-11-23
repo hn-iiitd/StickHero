@@ -35,14 +35,14 @@ public class GamePlayController {
         stage.show();
     }
 
-        @FXML
+    @FXML
     public void handleMousePressed(MouseEvent event) {
         if (event.isPrimaryButtonDown()) {
 //            stick.setHeight(0);
             stick.setWidth(2);
-            double newHeight = stick.getHeight() + 100;
-            double newY = stick.getY() - 100;
-            System.out.println(stick.getY());
+            double newHeight = stick.getHeight() + 200;
+            double newY = stick.getY() - 200;
+
             stick.setY(newY);
             stick.setHeight(newHeight);
             stick.getParent().requestLayout();
@@ -51,11 +51,14 @@ public class GamePlayController {
     }
     @FXML
     public void handleMouseReleased(MouseEvent e){
-//        stick.setWidth(stick.getHeight());
-//        stick.setHeight(2);
-//        stick.setLayoutY(600-81.5);
-//        System.out.println(stick.getHeight());
-//        stick.getParent().requestLayout();
+        stick.setWidth(stick.getHeight());
+        double h=stick.getHeight();
+        System.out.println("old"+stick.getY());
+        stick.setHeight(2);
+        stick.setY(0);
+        System.out.println("new"+stick.getY());
+        System.out.println(stick.getHeight());
+        stick.getParent().requestLayout();
 ////        stick.
     }
 //    public void handleMousePressed(MouseEvent event) {

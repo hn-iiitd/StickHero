@@ -5,17 +5,17 @@ import javafx.scene.shape.Rectangle;
 public class Stick implements GameComponents{
     //-----attributes-----\\
     private int stick_size = 0;
-    private final int stick_width = 15;
+    private final int stick_width = 2;
     private Rectangle stick;
     private double posi;
 
 
     //-----constructor-----\\
-    public Stick() {
-        stick = new Rectangle();
-        stick.setWidth(stick_width);
-        stick.setHeight(stick_size);
-        setStick(stick);
+    public Stick(Rectangle stick) {
+        this.stick=stick;
+//        stick.setWidth(stick_width);
+//        stick.setHeight(stick_size);
+//        setStick(stick);
     }
 
     //-----methods-----\\
