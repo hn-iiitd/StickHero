@@ -31,12 +31,13 @@ public class GamePlayController {
     @FXML
     private ImageView player;
     private Timeline stick_inc;
-    private boolean stick_made=false;
+    private boolean stick_made = false;
     @FXML
     private Rectangle p1;
     @FXML
     private Rectangle p2;
-    private boolean player_moved=false;
+    private boolean player_moved = false;
+
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -47,106 +48,166 @@ public class GamePlayController {
 
     @FXML
     public void handleMousePressed(MouseEvent event) {
-        if (!stick_made){
-        if (event.isPrimaryButtonDown()) {
+        if (!stick_made) {
+            if (event.isPrimaryButtonDown()) {
 //            stick.setHeight(0);
-            player.setX(p1.getWidth()-35);
-            stick.setWidth(2);
-            stick_inc=new Timeline();
+                player.setX(p1.getWidth() - 35);
+                stick.setWidth(2);
+                stick_inc = new Timeline();
 
-            double newHeight = stick.getHeight() + 200;
-            double newY = stick.getY() - 200;
+                double newHeight = stick.getHeight() + 200;
+                double newY = stick.getY() - 200;
 
-            stick.setY(newY);
-            stick.setHeight(newHeight);
-            stick.getParent().requestLayout();
-            stick_made=true;
+                stick.setY(newY);
+                stick.setHeight(newHeight);
+                stick.getParent().requestLayout();
+                stick_made = true;
 
-        }}
-        else{
+            }
+        } else {
             System.out.println("yoyo");
         }
 
     }
-//    public void handleMouseReleased(MouseEvent e) {
-//        if (stick_made){
-//        stick.setWidth(stick.getHeight());
-//        double h = stick.getHeight();
-//        stick.setHeight(2);
-//        stick.setY(0);
-////        System.out.println("old" + stick.getParent().getTranslateY());
-//        Timeline timeline = new Timeline();
-//        double startLayerY = stick.getParent().getTranslateY();
-//        double endLayerY = 0;
-//        int animationDuration = 1000;
-//
-//        KeyFrame keyFrame = new KeyFrame(
-//                Duration.millis(animationDuration),
-//                new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(ActionEvent event) {
-//                        double progress = timeline.getCurrentTime().toMillis() / animationDuration;
-//                        double newTranslateY = startLayerY + (endLayerY - startLayerY) * progress;
-//                        stick.getParent().setTranslateY(newTranslateY);
-//
-//                        double newPlayerX = player.getX() + stick.getWidth() * progress;
-//                        player.setX(newPlayerX);
-//                        stick.getParent().requestLayout();
-//                        player_moved=true;
-//                    }
-//                });
-//        timeline.getKeyFrames().add(keyFrame);
-//
-//        timeline.play();
-//
-//        stick_made=false;
-//
-////            timeline.stop();
-//
-//    }
-//        if (player_moved){
-//            platform_gen();
-//            player_moved=false;
-//        }
-//       }
-    public void handleMouseReleased(MouseEvent e){
-//        player.setX(p1.getWidth()-35);
 
+    public void handleMouseReleased(MouseEvent e) {
         stick.setWidth(stick.getHeight());
         double h = stick.getHeight();
         stick.setHeight(2);
         stick.setY(0);
-//        player.setX(p1.getWidth()-35);
-        TranslateTransition transition = new TranslateTransition();
-        transition.setNode(player);
-        transition.setDuration(Duration.millis(1000));
-//        transition.setFromX(p1.getWidth());
-        transition.setByX(stick.getWidth());
+        System.out.println(p2.getLayoutX()+" + "+stick.getLayoutX());
 
-        System.out.println(player.getX());
+            TranslateTransition transition = new TranslateTransition();
+            transition.setNode(player);
+            transition.setDuration(Duration.millis(1000));
+            transition.setToX(stick.getWidth());
+
+            System.out.println(player.getX());
+            transition.setOnFinished(event -> {
+                if (stick.getWidth()>(p2.getLayoutX()-stick.getLayoutX())&&stick.getWidth()>(p2.getLayoutX()-stick.getLayoutX())){
+                platform_gen();}
+                else {
+                    player_fall();
+                }
+            });
+            transition.play();
+        }
+
+
+//    public void platform_gen() {
+//        double a = Math.random() * (150 - 37 + 1) + 37;
+//
+//
+//        TranslateTransition transition2 = new TranslateTransition();
+//        TranslateTransition transition3 = new TranslateTransition();
+//
+//        transition2.setNode(p2);
+//        transition2.setDuration(Duration.millis(1000));
+//        transition3.setNode(p1);
+//        transition3.setDuration(Duration.millis(1000));
+//
+//        p2.setTranslateX(p2.getLayoutX());
+//        p2.setLayoutX(0);
+//        p1.setTranslateX(0);
+////        p1.setLayoutX();
+////    p1.setWidth(0);
+//        transition2.setToX(0);
+//        transition3.setToX(-p1.getWidth());
+////        p1.setLayoutX(0);
+//        transition2.setOnFinished(event -> {
+//            p1.setWidth(p2.getWidth());
+//            p1.setLayoutX(0);
+//            p1.setTranslateX(0);
+//            p2.setWidth(a);
+////            p2.setLayoutX(p1.getWidth());
+//            double gap = Math.random() * (250 - 40 + 1) + 40;
+//            p2.setLayoutX(gap + p1.getWidth());
+//            double playerEdgeX = p1.getX() + p1.getWidth();
+//            player.setX(0);
+//            player.setTranslateX(p1.getWidth() - 35);
+////        player.setX(playerEdgeX);
+//            stick.setLayoutX(0);
+//            stick.setTranslateX(playerEdgeX);
+//            System.out.println(p1.getWidth());
+//            player.getParent().requestLayout();
+//            stick_made = false;
+//
+//            // You can perform additional actions here after the transition is complete
+//        });
+////        transition3.setOnFinished(event -> {
+////
+////        });
+//        transition2.play();
+//        transition3.play();
+//    }
+    public void player_fall(){
+        stick.setHeight(stick.getWidth());
+
+        stick.setY(stick.getY()+stick.getHeight());
+        TranslateTransition transition=new TranslateTransition(Duration.millis(1000), player);
+        transition.setToY(player.getTranslateY() + p1.getHeight());
+
         transition.setOnFinished(event -> {
-            platform_gen();
-            // You can perform additional actions here after the transition is complete
+            try {
+                game_over();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
         transition.play();
-//        player.setX(p1.getX() + p1.getWidth()) ;
-//        platform_gen();
 
     }
-    public void platform_gen(){
-        double a = Math.random() * (150 - 37 + 1) + 37;
-        p1.setWidth(p2.getWidth());
-        p2.setWidth(a);
-        double playerEdgeX = p1.getX() + p1.getWidth(); // Calculate the right edge of p1
-        player.setX(0);
-        player.setTranslateX(p1.getWidth()-35);
-//        player.setX(playerEdgeX);
-        stick.setLayoutX(0);
-        stick.setTranslateX(playerEdgeX);
-        System.out.println(p1.getWidth());
-        player.getParent().requestLayout();
-        stick_made=false;
+    public void game_over() throws IOException {
+        root = FXMLLoader.load(getClass().getResource("game_over.fxml"));
+        stage = (Stage) player.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+    public void platform_gen() {
+        double a = Math.random() * (150 - 37 + 1) + 37;
+        TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
+        p2.setTranslateX(p2.getLayoutX());
+        p2.setLayoutX(0);
+        transition2.setToX(0);
+        transition2.setOnFinished(event -> {
+            p1.setWidth(p2.getWidth());
+            p1.setLayoutX(0);
+            p1.setTranslateX(0);
+            p2.setWidth(a);
+            double gap = Math.random() * (250 - 40 + 1) + 40;
+            p2.setLayoutX(gap+p1.getWidth());
+            double playerEdgeX = p1.getX() + p1.getWidth();
+            player.setX(0);
+            player.setTranslateX(playerEdgeX - 35);
+            stick.setLayoutX(0);
+            stick.setTranslateX(playerEdgeX);
+            player.getParent().requestLayout();
+            stick_made = false;
+        });
+        transition2.play();
+    }
+
+
+
+
+
+    // After the first transition, move the platform back
+//        transition2.setOnFinished(event -> movePlatformBack());
+//        p2.setWidth(a);
+//        p2.setLayoutX(p1.getWidth());
+//        double gap=Math.random()*(280-40+1)+40;
+//        p2.setX(gap);
+//        double playerEdgeX = p1.getX() + p1.getWidth();
+//        player.setX(0);
+//        player.setTranslateX(p1.getWidth()-35);
+////        player.setX(playerEdgeX);
+//        stick.setLayoutX(0);
+//        stick.setTranslateX(playerEdgeX);
+//        System.out.println(p1.getWidth());
+//        player.getParent().requestLayout();
+//        stick_made=false;
+
 
 //    @FXML
 //    public void handleMouseReleased(MouseEvent e){
