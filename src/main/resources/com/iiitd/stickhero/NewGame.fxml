@@ -13,9 +13,9 @@
             <Image url="@../../../background_game.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="114.0" layoutY="437.0" stroke="BLACK" width="90.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="312.0" layoutY="437.0" stroke="BLACK" width="93.0" />
-      <ImageView fitHeight="34.0" fitWidth="35.0" layoutX="52.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutY="437.0" stroke="BLACK" width="90.0" />
+      <Rectangle fx:id="p2" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="312.0" layoutY="437.0" stroke="BLACK" width="93.0" />
+      <ImageView fx:id="player" fitHeight="34.0" fitWidth="35.0" layoutY="403.0" layoutX="0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../StickHero.png" />
          </image>
