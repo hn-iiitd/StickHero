@@ -1,8 +1,6 @@
 package com.iiitd.stickhero;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,7 +18,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.*;
 
-public class GamePlayController {
+public class GamePlayController  {
     @FXML
     private Stage stage;
     @FXML
@@ -36,7 +34,10 @@ public class GamePlayController {
     private Rectangle p1;
     @FXML
     private Rectangle p2;
-    private boolean player_moved = false;
+    private long time_initial =0 ;
+    private long time_final =0 ;
+    Timeline timeline;
+
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
@@ -47,22 +48,24 @@ public class GamePlayController {
     }
 
     @FXML
-    public void handleMousePressed(MouseEvent event) {
+    public void handleMousePressed(MouseEvent event1) {
         if (!stick_made) {
-            if (event.isPrimaryButtonDown()) {
-//            stick.setHeight(0);
-                player.setX(p1.getWidth() - 35);
+            if (event1.isPrimaryButtonDown()) {
+                stick.setHeight(0);
                 stick.setWidth(2);
-                stick_inc = new Timeline();
+                time_initial = System.currentTimeMillis();
+                player.setX(p1.getWidth() - 35);
+                timeline = new Timeline(new KeyFrame(
+                        Duration.millis(10),event->increaseStickHeight()));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
 
-                double newHeight = stick.getHeight() + 200;
-                double newY = stick.getY() - 200;
+//                stick.setWidth(2);
+//                stick_inc = new Timeline();
 
-                stick.setY(newY);
-                stick.setHeight(newHeight);
-                stick.getParent().requestLayout();
-                stick_made = true;
-
+//                double newHeight = stick.getHeight() + ((double) (System.currentTimeMillis() - time_initial) /10);
+//                stick.setHeight(newHeight);
+//                stick_made = true;
             }
         } else {
             System.out.println("yoyo");
@@ -70,11 +73,16 @@ public class GamePlayController {
 
     }
 
+    private void increaseStickHeight() {
+        stick.setHeight(stick.getHeight()+3);
+        stick.setY(stick.getY()-3);
+    }
+
     public void handleMouseReleased(MouseEvent e) {
-        stick.setWidth(stick.getHeight());
-        double h = stick.getHeight();
-        stick.setHeight(2);
+        timeline.pause();
         stick.setY(0);
+        stick.setWidth(stick.getHeight());
+        stick.setHeight(2);
         System.out.println(p2.getLayoutX()+" + "+stick.getLayoutX());
 
             TranslateTransition transition = new TranslateTransition();
@@ -90,7 +98,9 @@ public class GamePlayController {
                     player_fall();
                 }
             });
+
             transition.play();
+
         }
 
 
@@ -183,6 +193,8 @@ public class GamePlayController {
             stick.setLayoutX(0);
             stick.setTranslateX(playerEdgeX);
             player.getParent().requestLayout();
+            stick.setWidth(2);
+            stick.setHeight(0);
             stick_made = false;
         });
         transition2.play();
