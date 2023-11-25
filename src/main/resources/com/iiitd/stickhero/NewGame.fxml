@@ -15,7 +15,7 @@
       </ImageView>
       <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutY="437.0" stroke="BLACK" width="90.0" />
       <Rectangle fx:id="p2" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="205.0" layoutY="437.0" stroke="BLACK" width="93.0" />
-      <ImageView fx:id="player" fitHeight="34.0" fitWidth="35.0" layoutX="0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="player" fitHeight="34.0" fitWidth="35.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../StickHero.png" />
          </image>
@@ -26,7 +26,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00000026" height="46.0" layoutX="192.0" layoutY="61.0" mouseTransparent="true" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
-      <Label alignment="CENTER" layoutX="84.0" layoutY="117.0" prefHeight="34.0" prefWidth="294.0" text="Hold spacebar on screen to strech out the stick" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="84.0" layoutY="117.0" prefHeight="34.0" prefWidth="294.0" text="Tap on screen to strech out the stick" textAlignment="CENTER">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font></Label>
@@ -42,6 +42,6 @@
          </image>
       </ImageView>
       <Label layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" layoutX="89.0" layoutY="438.0" onMousePressed="#switchToMenu" rotate="180.0" stroke="BLACK" strokeType="INSIDE" width="2.0" />
+      <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="2.0" layoutX="85.0" layoutY="480.0" onMousePressed="#switchToMenu" rotate="180.0" stroke="BLACK" strokeType="INSIDE" width="4.0" AnchorPane.bottomAnchor="123.20000000000005" AnchorPane.leftAnchor="85.0" />
    </children>
 </AnchorPane>
