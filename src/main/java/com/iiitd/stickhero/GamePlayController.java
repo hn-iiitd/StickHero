@@ -54,7 +54,7 @@ public class GamePlayController {
             if (event1.isPrimaryButtonDown()) {
                 stick.setHeight(0);
                 stick.setWidth(3);
-                player.setX(p1.getWidth()-player.getFitWidth());
+                player.setLayoutX(p2.getWidth()+player.getFitWidth());
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
                 timeline.setCycleCount(Animation.INDEFINITE);
