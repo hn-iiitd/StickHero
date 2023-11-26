@@ -55,7 +55,7 @@ public class GamePlayController {
                 stick.setHeight(0);
                 stick.setWidth(3);
 //                stick.setTranslateX(0);
-                player.setTranslateX(0);
+//                player.setTranslateX(0);
 //                player.setLayoutX(p1.getWidth()-player.getFitWidth());
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
@@ -86,7 +86,7 @@ public class GamePlayController {
         Rotate rotate = new Rotate(0,pivot_x,pivot_y);
         stick.getTransforms().add(rotate);
         rotation = new Timeline(
-                new KeyFrame(Duration.millis(100),new KeyValue(rotate.angleProperty(),90))
+                new KeyFrame(Duration.millis(200),new KeyValue(rotate.angleProperty(),90))
         );
         rotation.setOnFinished(event ->
         {
@@ -202,10 +202,13 @@ public class GamePlayController {
 
         double a = Math.random() * (150 - 37 + 1) + 37;
         TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
+        TranslateTransition playerTransition = new TranslateTransition(Duration.millis(1000),player);
         p2.setTranslateX(p2.getLayoutX());
+//        player.setTranslateX(player.getLayoutX());
 //        player.setLayoutX(p2.getLayoutX());
         p2.setLayoutX(0);
         transition2.setToX(0);
+        playerTransition.setToX(p2.getLayoutX());
         transition2.setOnFinished(event -> {
             p1.setWidth(p2.getWidth());
             p1.setLayoutX(0);
@@ -214,9 +217,9 @@ public class GamePlayController {
             current_platform_length = p1.getWidth();
             double gap = Math.random() * (250 - 40 + 1) + 40;
             p2.setLayoutX(gap + p1.getWidth());
-            double playerEdgeX = p1.getX() + p1.getWidth();
+//            double playerEdgeX = p1.getX() + p1.getWidth();
 //            player.setX(0);
-            player.setTranslateX(0);
+//            player.setTranslateX(0);
             player.setLayoutX(p1.getWidth()-player.getFitWidth()-4);
 //            stick.setTranslateX(0);
 //            stick.setX(0);
@@ -227,6 +230,7 @@ public class GamePlayController {
             stick_made = false;
         });
         transition2.play();
+        playerTransition.play();
     }
 
 
