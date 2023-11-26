@@ -99,15 +99,17 @@ public class GamePlayController {
             TranslateTransition transition = new TranslateTransition();
             transition.setNode(player);
             transition.setDuration(Duration.millis(1000));
-            transition.setToX(stick_height);
+            if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
+                transition.setToX(p2.getLayoutX() - stick.getLayoutX()+p2.getWidth());
+            }
+            else {
+                transition.setToX(stick_height);
+            }
             stick.setWidth(3);
-            System.out.println(player.getX());
+//            System.out.println(player.getX());
             transition.setOnFinished(event2 -> {
-                if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height > (p2.getLayoutX() - stick.getLayoutX())) {
+                if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
                     platform_gen();
-//                    stick.setY(player.getY()+player.getFitHeight());
-//                    stick.setTranslateX(0);
-//                    stick.setLayoutX(0);
                     stick.setHeight(0);
                     stick.setWidth(3);
                     rotate.setAngle(0);
@@ -201,7 +203,7 @@ public class GamePlayController {
         double a = Math.random() * (150 - 37 + 1) + 37;
         TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
         p2.setTranslateX(p2.getLayoutX());
-        player.setLayoutX(p2.getTranslateX());
+//        player.setLayoutX(p2.getLayoutX());
         p2.setLayoutX(0);
         transition2.setToX(0);
         transition2.setOnFinished(event -> {
