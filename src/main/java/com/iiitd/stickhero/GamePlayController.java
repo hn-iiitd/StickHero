@@ -54,7 +54,9 @@ public class GamePlayController {
             if (event1.isPrimaryButtonDown()) {
                 stick.setHeight(0);
                 stick.setWidth(3);
-                player.setLayoutX(p2.getWidth()+player.getFitWidth());
+//                stick.setTranslateX(0);
+                player.setTranslateX(0);
+                player.setLayoutX(p1.getWidth()-player.getFitWidth());
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -79,19 +81,19 @@ public class GamePlayController {
 
     public void handleMouseReleased(MouseEvent e) {
         timeline.stop();
-        double pivot_x = stick.getX();
-        double pivot_y = stick.getY();
+        double pivot_x = stick.getLayoutX();
+        double pivot_y = stick.getLayoutY();
         Rotate rotate = new Rotate(0,pivot_x,pivot_y);
         stick.getTransforms().add(rotate);
         rotation = new Timeline(
                 new KeyFrame(Duration.millis(100),new KeyValue(rotate.angleProperty(),90))
-                );
+        );
         rotation.setOnFinished(event ->
         {
             double stick_height = stick.getHeight();
 //        stick.setWidth(stick_height);
 //        stick.setHeight(2);
-            System.out.println(p2.getLayoutX() + " + " + stick.getLayoutX());
+            System.out.println(stick.getX() + " + " + stick.getLayoutX());
 
             TranslateTransition transition = new TranslateTransition();
             transition.setNode(player);
@@ -102,10 +104,12 @@ public class GamePlayController {
             transition.setOnFinished(event2 -> {
                 if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height > (p2.getLayoutX() - stick.getLayoutX())) {
                     platform_gen();
-                    stick.setY(player.getY()+player.getFitHeight());
-                    stick.setX(player.getX()-player.getFitWidth());
+//                    stick.setY(player.getY()+player.getFitHeight());
+//                    stick.setTranslateX(0);
+//                    stick.setLayoutX(0);
                     stick.setHeight(0);
                     stick.setWidth(3);
+                    stick.setLayoutX(p1.getLayoutX());
                     rotate.setAngle(0);
                 } else {
                     player_fall();
@@ -197,6 +201,7 @@ public class GamePlayController {
         double a = Math.random() * (150 - 37 + 1) + 37;
         TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
         p2.setTranslateX(p2.getLayoutX());
+        player.setLayoutX(p2.getTranslateX());
         p2.setLayoutX(0);
         transition2.setToX(0);
         transition2.setOnFinished(event -> {
@@ -207,12 +212,14 @@ public class GamePlayController {
             double gap = Math.random() * (250 - 40 + 1) + 40;
             p2.setLayoutX(gap + p1.getWidth());
             double playerEdgeX = p1.getX() + p1.getWidth();
-            player.setX(0);
-            player.setTranslateX(playerEdgeX - 35);
-            stick.setLayoutX(0);
-            stick.setTranslateX(playerEdgeX);
-            player.getParent().requestLayout();
+//            player.setX(0);
+            player.setTranslateX(0);
+            player.setLayoutX(p1.getWidth()-player.getFitWidth());
+//            stick.setTranslateX(0);
+//            stick.setX(0);
+//            stick.setLayoutX(p1.getWidth()+p1.getLayoutX());
 
+            player.getParent().requestLayout();
             stick_made = false;
         });
         transition2.play();
