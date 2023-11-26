@@ -38,7 +38,7 @@ public class GamePlayController {
     private Rectangle p2;
     Timeline timeline;
     Timeline rotation;
-
+    private double current_platform_length;
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
@@ -56,7 +56,7 @@ public class GamePlayController {
                 stick.setWidth(3);
 //                stick.setTranslateX(0);
                 player.setTranslateX(0);
-                player.setLayoutX(p1.getWidth()-player.getFitWidth());
+//                player.setLayoutX(p1.getWidth()-player.getFitWidth());
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -81,8 +81,8 @@ public class GamePlayController {
 
     public void handleMouseReleased(MouseEvent e) {
         timeline.stop();
-        double pivot_x = stick.getLayoutX();
-        double pivot_y = stick.getLayoutY();
+        double pivot_x = stick.getX();
+        double pivot_y = stick.getY();
         Rotate rotate = new Rotate(0,pivot_x,pivot_y);
         stick.getTransforms().add(rotate);
         rotation = new Timeline(
@@ -110,7 +110,6 @@ public class GamePlayController {
 //                    stick.setLayoutX(0);
                     stick.setHeight(0);
                     stick.setWidth(3);
-                    stick.setLayoutX(p1.getLayoutX());
                     rotate.setAngle(0);
                 } else {
                     player_fall();
@@ -210,17 +209,19 @@ public class GamePlayController {
             p1.setLayoutX(0);
             p1.setTranslateX(0);
             p2.setWidth(a);
+            current_platform_length = p1.getWidth();
             double gap = Math.random() * (250 - 40 + 1) + 40;
             p2.setLayoutX(gap + p1.getWidth());
             double playerEdgeX = p1.getX() + p1.getWidth();
 //            player.setX(0);
             player.setTranslateX(0);
-            player.setLayoutX(p1.getWidth()-player.getFitWidth());
+            player.setLayoutX(p1.getWidth()-player.getFitWidth()-4);
 //            stick.setTranslateX(0);
 //            stick.setX(0);
 //            stick.setLayoutX(p1.getWidth()+p1.getLayoutX());
 
             player.getParent().requestLayout();
+            stick.setX(player.getLayoutX()-player.getFitWidth()-16);
             stick_made = false;
         });
         transition2.play();
