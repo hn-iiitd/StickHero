@@ -93,6 +93,7 @@ public class GamePlayController {
             double stick_height = stick.getHeight();
 //        stick.setWidth(stick_height);
 //        stick.setHeight(2);
+
             System.out.println(stick.getX() + " + " + stick.getLayoutX());
 
             TranslateTransition transition = new TranslateTransition();
