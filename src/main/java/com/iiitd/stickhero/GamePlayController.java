@@ -9,6 +9,7 @@ import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +22,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class GamePlayController {
+
+    @FXML
+    private Label current_score;
     @FXML
     private Stage stage;
     @FXML
@@ -39,6 +43,11 @@ public class GamePlayController {
     Timeline timeline;
     Timeline rotation;
     private double current_platform_length;
+    private static int currentScore;
+
+    public static int getCurrentScore() {
+        return currentScore;
+    }
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
@@ -109,6 +118,8 @@ public class GamePlayController {
 //            System.out.println(player.getX());
             transition.setOnFinished(event2 -> {
                 if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
+                    current_score.setText(String.valueOf(Integer.parseInt(current_score.getText())+1));
+                    currentScore = Integer.parseInt(current_score.getText());
                     platform_gen();
                     stick.setHeight(0);
                     stick.setWidth(3);
@@ -176,9 +187,15 @@ public class GamePlayController {
 //        stick.setHeight(stick.getWidth());
 
 //        stick.setY(stick.getY()+stick.getHeight());
-        TranslateTransition transition = new TranslateTransition(Duration.millis(1000), player);
+        TranslateTransition transition = new TranslateTransition(Duration.millis(950), player);
         transition.setToY(player.getTranslateY() + p1.getHeight());
-
+        double pivot_x = stick.getX();
+        double pivot_y = stick.getY();
+        Rotate rotate = new Rotate(0,pivot_x,pivot_y);
+        stick.getTransforms().add(rotate);
+        rotation = new Timeline(
+                new KeyFrame(Duration.millis(1000),new KeyValue(rotate.angleProperty(),90))
+        );
         transition.setOnFinished(event -> {
             try {
                 game_over();
@@ -186,7 +203,9 @@ public class GamePlayController {
                 throw new RuntimeException(e);
             }
         });
+        rotation.play();
         transition.play();
+
 
     }
 

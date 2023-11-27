@@ -4,12 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
+<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GameOverController">
    <children>
-      <Label layoutX="122.0" layoutY="242.0" text="Game Over">
+      <Label layoutX="120.0" layoutY="119.0" text="Game Over">
          <font>
             <Font size="45.0" />
          </font>
       </Label>
+      <Label layoutX="174.0" layoutY="229.0" text="Score : ">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="final_score" layoutX="248.0" layoutY="229.0" text="0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="148.0" layoutY="287.0" mnemonicParsing="false" onAction="#switchToMenu" text="Continue to Game Menu" />
    </children>
 </AnchorPane>
