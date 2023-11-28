@@ -5,26 +5,35 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Blend;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
-public class GamePlayController {
+public class GamePlayController implements Initializable {
+
     public boolean Cherries_ON = false;
 
+    @FXML
+    private AnchorPane ap;
     @FXML
     private Label current_score;
     @FXML
@@ -34,10 +43,11 @@ public class GamePlayController {
     private Parent root;
     @FXML
     private Rectangle stick;
-    @FXML
-    private ImageView BlueCherries = new ImageView(new Image("[removal.ai]_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png"));
-    @FXML
-    private ImageView RedCherries = new ImageView(new Image("pngtree-flat-vector-cherries-cartoon-red-cherry-fruit-illustration-isolated-png-image_2506424-removebg-preview.png"));
+
+    private ImageView BlueCherries = new ImageView(new Image(new FileInputStream("src/main/resources/[removal.ai]_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png")));
+
+    private ImageView RedCherries = new ImageView(new Image(new FileInputStream("src/main/resources/pngtree-flat-vector-cherries-cartoon-red-cherry-fruit-illustration-isolated-png-image_2506424-removebg-preview.png")));
+
     @FXML
     private Label RedCherryCount;
     @FXML
@@ -56,38 +66,64 @@ public class GamePlayController {
     private double current_platform_length;
     private static int currentScore;
 
+    AnimationTimer timer = new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            checkCollision(RedCherries,player);
+            checkCollision(BlueCherries,player);
+        }
+    };
+
+    public GamePlayController() throws FileNotFoundException {
+    }
+
+    private void checkCollision(ImageView Cherries, ImageView player) {
+        if(ap.getChildren().contains(Cherries) && player.getBoundsInParent().intersects(Cherries.getBoundsInParent())){
+            System.out.println("Collision");
+            ap.getChildren().remove(Cherries);
+            if(Cherries.equals(RedCherries)){
+                RedCherryCount.setText(String.valueOf(Integer.parseInt(RedCherryCount.getText()) +1));
+            }
+            else if(Cherries.equals(BlueCherries)){
+                BlueCherryCount.setText(String.valueOf(Integer.parseInt(BlueCherryCount.getText()) +1));
+            }
+
+        }
+
+    }
+
     public static int getCurrentScore() {
         return currentScore;
     }
 
-//    public void cherry_gen() {
-//        int cherry_gen_posi = new Random().nextInt((int) (p2.getLayoutX() - p1.getLayoutX()));
-//        int red_chance = 1
-////                new Random().nextInt(0, 1)
-//                ;
-//        int blue_chance = new Random().nextInt(0, 6);
-//        if (red_chance == 1) {
-//            redCherryGen(cherry_gen_posi);
-//        } else if (blue_chance == 1) {
-//            blueCherryGen(cherry_gen_posi);
-//        } else {
-//            BlueCherries.setLayoutX(-14);
-//            RedCherries.setLayoutX(-14);
-//        }
-//    }
-//
-//    public void blueCherryGen(int posi) {
-//        BlueCherries.setLayoutX(posi);
-//        BlueCherries.setLayoutY(player.getLayoutY());
-//        Cherries_ON = true;
-//    }
-//
-//    public void redCherryGen(int posi) {
-//        RedCherries.setLayoutX(posi);
-//        RedCherries.setLayoutY(player.getLayoutY()); // Corrected this line
-//        Cherries_ON = true;
-//    }
-//
+    public void cherry_gen() {
+        int cherry_gen_posi = new Random().nextInt((int)(p1.getLayoutX()+p1.getWidth()),(int)(p2.getLayoutX()-3));
+        int red_chance = new Random().nextInt(0, 2);
+        int blue_chance = new Random().nextInt(0, 4);
+        if (red_chance == 1) {
+            redCherryGen(cherry_gen_posi);}
+        else if(blue_chance==1){
+            blueCherryGen(cherry_gen_posi);
+        }
+    }
+
+    public void blueCherryGen(int posi) {
+        BlueCherries.setFitWidth(32);
+        BlueCherries.setFitHeight(32);
+        BlueCherries.setLayoutX(posi);
+        BlueCherries.setLayoutY(player.getLayoutY());
+        ap.getChildren().add(BlueCherries);
+    }
+
+    public void redCherryGen(int posi) {
+        RedCherries.setFitWidth(32);
+        RedCherries.setFitHeight(32);
+        RedCherries.setLayoutX(posi);
+        RedCherries.setLayoutY(player.getLayoutY());
+        ap.getChildren().add(RedCherries);
+
+    }
+
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
@@ -158,6 +194,7 @@ public class GamePlayController {
             stick.setWidth(3);
 //            System.out.println(player.getX());
             transition.setOnFinished(event2 -> {
+
                 if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
                     current_score.setText(String.valueOf(Integer.parseInt(current_score.getText())+1));
                     currentScore = Integer.parseInt(current_score.getText());
@@ -170,6 +207,7 @@ public class GamePlayController {
                 }
             });
             transition.play();
+
         });
         rotation.play();
 //        stick.setY(0);
@@ -287,11 +325,22 @@ public class GamePlayController {
 
             player.getParent().requestLayout();
             stick.setX(player.getLayoutX()-player.getFitWidth()-16);
-//            cherry_gen();
+            cherry_gen();
             stick_made = false;
         });
         transition2.play();
         playerTransition.play();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            new GamePlayController();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        timer.start();
+
     }
 
 

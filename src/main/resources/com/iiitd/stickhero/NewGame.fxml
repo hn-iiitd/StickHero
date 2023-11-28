@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane onMouseClicked="#handleMousePressed" prefHeight="593.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
+<AnchorPane fx:id="ap" onMouseClicked="#handleMousePressed" prefHeight="593.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
    <children>
       <ImageView fx:id="img" fitHeight="607.0" fitWidth="463.0" layoutY="-2.0" onMousePressed="#handleMousePressed" onMouseReleased="#handleMouseReleased" pickOnBounds="true">
          <image>
@@ -20,9 +20,6 @@
             <Image url="@../../../StickHero.png" />
          </image>
       </ImageView>
-<!--      &lt;!&ndash; Example visibility setting &ndash;&gt;-->
-<!--      <ImageView fx:id="BlueCherries" layoutX="100" layoutY="200" visible="false"/>-->
-<!--      <ImageView fx:id="RedCherries" layoutX="100" layoutY="200" visible="false"/>-->
 
       <Label fx:id="current_score" alignment="CENTER" layoutX="205.0" layoutY="61.0" prefHeight="46.0" prefWidth="53.0" text="0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
@@ -39,13 +36,13 @@
             <Image url="@../../../pngtree-flat-vector-cherries-cartoon-red-cherry-fruit-illustration-isolated-png-image_2506424-removebg-preview.png" />
          </image>
       </ImageView>
-      <Label layoutX="407.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Label fx:id="RedCherryCount" layoutX="407.0" layoutY="35.0" text="0" textFill="WHITE" />
       <ImageView fitHeight="34.0" fitWidth="28.0" layoutX="364.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../%5Bremoval.ai%5D_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png" />
          </image>
       </ImageView>
-      <Label layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Label fx:id="BlueCherryCount" layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />
       <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="2.0" layoutX="85.0" layoutY="480.0" onMousePressed="#switchToMenu" rotate="180.0" stroke="BLACK" strokeType="INSIDE" width="4.0" AnchorPane.bottomAnchor="123.20000000000005" />
    </children>
 </AnchorPane>
