@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class GamePlayController {
+    public boolean Cherries_ON = false;
 
     @FXML
     private Label current_score;
@@ -32,6 +34,15 @@ public class GamePlayController {
     private Parent root;
     @FXML
     private Rectangle stick;
+    @FXML
+    private ImageView BlueCherries = new ImageView(new Image("[removal.ai]_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png"));
+    @FXML
+    private ImageView RedCherries = new ImageView(new Image("pngtree-flat-vector-cherries-cartoon-red-cherry-fruit-illustration-isolated-png-image_2506424-removebg-preview.png"));
+    @FXML
+    private Label RedCherryCount;
+    @FXML
+    private Label BlueCherryCount;
+
     @FXML
     private ImageView player;
     private Timeline stick_inc;
@@ -48,6 +59,35 @@ public class GamePlayController {
     public static int getCurrentScore() {
         return currentScore;
     }
+
+//    public void cherry_gen() {
+//        int cherry_gen_posi = new Random().nextInt((int) (p2.getLayoutX() - p1.getLayoutX()));
+//        int red_chance = 1
+////                new Random().nextInt(0, 1)
+//                ;
+//        int blue_chance = new Random().nextInt(0, 6);
+//        if (red_chance == 1) {
+//            redCherryGen(cherry_gen_posi);
+//        } else if (blue_chance == 1) {
+//            blueCherryGen(cherry_gen_posi);
+//        } else {
+//            BlueCherries.setLayoutX(-14);
+//            RedCherries.setLayoutX(-14);
+//        }
+//    }
+//
+//    public void blueCherryGen(int posi) {
+//        BlueCherries.setLayoutX(posi);
+//        BlueCherries.setLayoutY(player.getLayoutY());
+//        Cherries_ON = true;
+//    }
+//
+//    public void redCherryGen(int posi) {
+//        RedCherries.setLayoutX(posi);
+//        RedCherries.setLayoutY(player.getLayoutY()); // Corrected this line
+//        Cherries_ON = true;
+//    }
+//
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
@@ -103,11 +143,12 @@ public class GamePlayController {
 //        stick.setWidth(stick_height);
 //        stick.setHeight(2);
 
-            System.out.println(stick.getX() + " + " + stick.getLayoutX());
+//            System.out.println(stick.getX() + " + " + stick.getLayoutX());
 
             TranslateTransition transition = new TranslateTransition();
             transition.setNode(player);
             transition.setDuration(Duration.millis(1000));
+
             if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
                 transition.setToX(p2.getLayoutX() - stick.getLayoutX()+p2.getWidth());
             }
@@ -246,6 +287,7 @@ public class GamePlayController {
 
             player.getParent().requestLayout();
             stick.setX(player.getLayoutX()-player.getFitWidth()-16);
+//            cherry_gen();
             stick_made = false;
         });
         transition2.play();
