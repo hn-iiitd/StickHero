@@ -20,11 +20,6 @@ public class StickHero extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        //----to_add_css-----
-//        String css = this.getClass().getResource("Style.css").toExternalForm();
-//        scene.getStylesheets().add(css);
-        //----------------------------
-
 
         stage.setTitle("StickHero");
         Image icon = new Image("unnamed.png");

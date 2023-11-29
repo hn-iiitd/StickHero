@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -29,8 +30,10 @@ import java.net.URL;
 import java.util.*;
 
 public class GamePlayController implements Initializable {
+    private boolean isManDown = false;
 
     public boolean Cherries_ON = false;
+    private boolean player_walking = false;
 
     @FXML
     private AnchorPane ap;
@@ -71,6 +74,11 @@ public class GamePlayController implements Initializable {
         public void handle(long l) {
             checkCollision(RedCherries,player);
             checkCollision(BlueCherries,player);
+            try {
+                checkCollisionPlat(player,p2);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     };
 
@@ -79,7 +87,7 @@ public class GamePlayController implements Initializable {
 
     private void checkCollision(ImageView Cherries, ImageView player) {
         if(ap.getChildren().contains(Cherries) && player.getBoundsInParent().intersects(Cherries.getBoundsInParent())){
-            System.out.println("Collision");
+//            System.out.println("Collision");
             ap.getChildren().remove(Cherries);
             if(Cherries.equals(RedCherries)){
                 RedCherryCount.setText(String.valueOf(Integer.parseInt(RedCherryCount.getText()) +1));
@@ -91,6 +99,19 @@ public class GamePlayController implements Initializable {
         }
 
     }
+    private void checkCollisionPlat(ImageView player, Rectangle p2) throws IOException {
+        if(player_walking && isManDown && player.getBoundsInParent().intersects(p2.getBoundsInParent())  ){
+            try {
+                player_fall();
+
+            }
+            catch (Exception e){
+                System.out.println("player collided with platform");
+
+            }
+        }
+    }
+
 
     public static int getCurrentScore() {
         return currentScore;
@@ -132,10 +153,9 @@ public class GamePlayController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     @FXML
     public void handleMousePressed(MouseEvent event1) {
-        if (!stick_made) {
+        if (!stick_made && !player_walking) {
             if (event1.isPrimaryButtonDown()) {
                 stick.setHeight(0);
                 stick.setWidth(3);
@@ -154,7 +174,24 @@ public class GamePlayController implements Initializable {
 //                stick.setHeight(newHeight);
                 stick_made = true;
             }
-        } else {
+        } else if (player_walking && event1.isPrimaryButtonDown()) {
+            double pivot_x_player = player.getX();
+            double pivot_y_player = player.getY()+player.getFitHeight();
+            Rotate rotate = new Rotate(0, pivot_x_player, pivot_y_player);
+            player.getTransforms().add(rotate);
+
+            rotation = new Timeline(
+                    new KeyFrame(Duration.millis(1), new KeyValue(rotate.angleProperty(), -180))
+            );
+            rotation.play();
+            if((rotate.getAngle()/180) %2 == 0){
+                isManDown = true;
+            }
+            else{
+                isManDown = false;
+            }
+        }
+        else {
             System.out.println("yoyo");
         }
 
@@ -165,53 +202,57 @@ public class GamePlayController implements Initializable {
     }
 
     public void handleMouseReleased(MouseEvent e) {
-        timeline.stop();
-        double pivot_x = stick.getX();
-        double pivot_y = stick.getY();
-        Rotate rotate = new Rotate(0,pivot_x,pivot_y);
-        stick.getTransforms().add(rotate);
-        rotation = new Timeline(
-                new KeyFrame(Duration.millis(200),new KeyValue(rotate.angleProperty(),90))
-        );
-        rotation.setOnFinished(event ->
-        {
-            double stick_height = stick.getHeight();
+        if(!player_walking) {
+            timeline.stop();
+            double pivot_x = stick.getX();
+            double pivot_y = stick.getY();
+            Rotate rotate = new Rotate(0, pivot_x, pivot_y);
+            stick.getTransforms().add(rotate);
+            rotation = new Timeline(
+                    new KeyFrame(Duration.millis(200), new KeyValue(rotate.angleProperty(), 90))
+            );
+            rotation.setOnFinished(event ->
+            {
+                double stick_height = stick.getHeight();
 //        stick.setWidth(stick_height);
 //        stick.setHeight(2);
 
 //            System.out.println(stick.getX() + " + " + stick.getLayoutX());
 
-            TranslateTransition transition = new TranslateTransition();
-            transition.setNode(player);
-            transition.setDuration(Duration.millis(1000));
+                TranslateTransition transition = new TranslateTransition();
+                transition.setNode(player);
+                transition.setDuration(Duration.millis(1000));
 
-            if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
-                transition.setToX(p2.getLayoutX() - stick.getLayoutX()+p2.getWidth());
-            }
-            else {
-                transition.setToX(stick_height);
-            }
-            stick.setWidth(3);
-//            System.out.println(player.getX());
-            transition.setOnFinished(event2 -> {
-
-                if (stick_height > (p2.getLayoutX() - stick.getLayoutX()) && stick_height < (p2.getLayoutX() - stick.getLayoutX()+p2.getWidth())) {
-                    current_score.setText(String.valueOf(Integer.parseInt(current_score.getText())+1));
-                    currentScore = Integer.parseInt(current_score.getText());
-                    platform_gen();
-                    stick.setHeight(0);
-                    stick.setWidth(3);
-                    rotate.setAngle(0);
+                if (stick_height > (p2.getLayoutX() - p1.getWidth()) && stick_height < (p2.getLayoutX() - p1.getWidth() + p2.getWidth())) {
+                    transition.setToX(p2.getLayoutX() - stick.getLayoutX() + p2.getWidth());
                 } else {
-                    player_fall();
+                    transition.setToX(stick_height);
                 }
+                stick.setWidth(3);
+//            System.out.println(player.getX());
+                transition.setOnFinished(event2 -> {
+                    player_walking = false;
+                    if (stick_height > (p2.getLayoutX() - p1.getWidth()) && stick_height < (p2.getLayoutX() - p1.getWidth() + p2.getWidth())) {
+                        current_score.setText(String.valueOf(Integer.parseInt(current_score.getText()) + 1));
+                        currentScore = Integer.parseInt(current_score.getText());
+                        platform_gen();
+                        stick.setHeight(0);
+                        stick.setWidth(3);
+                        rotate.setAngle(0);
+                    } else {
+                        player_fall();
+                    }
+                });
+                transition.play();
+                player_walking = true;
+
             });
-            transition.play();
-
-        });
-        rotation.play();
+            rotation.play();
 //        stick.setY(0);
+        }
+        else if(player_walking){
 
+        }
 
     }
 
@@ -263,6 +304,7 @@ public class GamePlayController implements Initializable {
 //        transition3.play();
 //    }
     public void player_fall() {
+
 //        stick.setHeight(stick.getWidth());
 
 //        stick.setY(stick.getY()+stick.getHeight());
@@ -297,7 +339,8 @@ public class GamePlayController implements Initializable {
     }
 
     public void platform_gen() {
-
+        ap.getChildren().remove(RedCherries);
+        ap.getChildren().remove(BlueCherries);
         double a = Math.random() * (150 - 37 + 1) + 37;
         TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
         TranslateTransition playerTransition = new TranslateTransition(Duration.millis(1000),player);
