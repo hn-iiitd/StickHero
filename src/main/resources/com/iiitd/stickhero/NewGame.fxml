@@ -43,6 +43,6 @@
          </image>
       </ImageView>
       <Label fx:id="BlueCherryCount" layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" height="2.0" layoutX="85.0" layoutY="480.0" onMousePressed="#switchToMenu" rotate="180.0" stroke="BLACK" strokeType="INSIDE" width="4.0" AnchorPane.bottomAnchor="123.20000000000005" />
+      <Rectangle fx:id="stick" arcHeight="5.0" arcWidth="5.0" layoutX="85.0" layoutY="480.0" onMousePressed="#switchToMenu" rotate="180.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="123.20000000000005" />
    </children>
 </AnchorPane>

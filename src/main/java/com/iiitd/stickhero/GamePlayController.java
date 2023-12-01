@@ -15,6 +15,7 @@ import javafx.scene.effect.Blend;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
@@ -66,6 +67,7 @@ public class GamePlayController implements Initializable {
     private Rectangle p2;
     Timeline timeline;
     Timeline rotation;
+    Timeline rotation2;
     private double current_platform_length;
     private static int currentScore;
 
@@ -153,8 +155,25 @@ public class GamePlayController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+//    public void space_pressed(KeyEvent e){
+//        System.out.println("d   ");
+//        if (e.getCode()==KeyCode.SPACE && player_walking){
+//            double pivot_x_player = player.getX()+ player.getFitWidth();
+//            double pivot_y_player = player.getY()+player.getFitHeight();
+//            Rotate rotate = new Rotate(0, pivot_x_player, pivot_y_player);
+//            player.getTransforms().add(rotate);
+//
+//            rotation2 = new Timeline(
+//                    new KeyFrame(Duration.millis(1), new KeyValue(rotate.angleProperty(), -180))
+//            );
+//            rotation2.play();
+//
+//        }
+//    }
     @FXML
     public void handleMousePressed(MouseEvent event1) {
+        stick.getParent().requestFocus();
         if (!stick_made && !player_walking) {
             if (event1.isPrimaryButtonDown()) {
                 stick.setHeight(0);
@@ -166,30 +185,18 @@ public class GamePlayController implements Initializable {
                         Duration.millis(10), event -> increaseStickHeight()));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
-
-//                stick.setWidth(2);
-//                stick_inc = new Timeline();
-
-//                double newHeight = stick.getHeight() + ((double) (System.currentTimeMillis() - time_initial) /10);
-//                stick.setHeight(newHeight);
                 stick_made = true;
             }
         } else if (player_walking && event1.isPrimaryButtonDown()) {
-            double pivot_x_player = player.getX();
+            double pivot_x_player = player.getX()+ player.getFitWidth();
             double pivot_y_player = player.getY()+player.getFitHeight();
             Rotate rotate = new Rotate(0, pivot_x_player, pivot_y_player);
             player.getTransforms().add(rotate);
 
-            rotation = new Timeline(
+            rotation2 = new Timeline(
                     new KeyFrame(Duration.millis(1), new KeyValue(rotate.angleProperty(), -180))
             );
-            rotation.play();
-            if((rotate.getAngle()/180) %2 == 0){
-                isManDown = true;
-            }
-            else{
-                isManDown = false;
-            }
+            rotation2.play();
         }
         else {
             System.out.println("yoyo");
@@ -204,6 +211,7 @@ public class GamePlayController implements Initializable {
     public void handleMouseReleased(MouseEvent e) {
         if(!player_walking) {
             timeline.stop();
+            player_walking=true;
             double pivot_x = stick.getX();
             double pivot_y = stick.getY();
             Rotate rotate = new Rotate(0, pivot_x, pivot_y);
@@ -211,6 +219,7 @@ public class GamePlayController implements Initializable {
             rotation = new Timeline(
                     new KeyFrame(Duration.millis(200), new KeyValue(rotate.angleProperty(), 90))
             );
+
             rotation.setOnFinished(event ->
             {
                 double stick_height = stick.getHeight();
@@ -242,6 +251,7 @@ public class GamePlayController implements Initializable {
                     } else {
                         player_fall();
                     }
+
                 });
                 transition.play();
                 player_walking = true;
@@ -251,7 +261,7 @@ public class GamePlayController implements Initializable {
 //        stick.setY(0);
         }
         else if(player_walking){
-
+            System.out.println("hello");
         }
 
     }
