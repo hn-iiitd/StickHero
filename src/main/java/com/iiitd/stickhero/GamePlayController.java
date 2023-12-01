@@ -197,6 +197,7 @@ public class GamePlayController implements Initializable {
                     new KeyFrame(Duration.millis(1), new KeyValue(rotate.angleProperty(), -180))
             );
             rotation2.play();
+            isManDown=!isManDown;
         }
         else {
             System.out.println("yoyo");
