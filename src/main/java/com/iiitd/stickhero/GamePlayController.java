@@ -104,13 +104,15 @@ public class GamePlayController implements Initializable {
     private void checkCollisionPlat(ImageView player, Rectangle p2) throws IOException {
         if(player_walking && isManDown && player.getBoundsInParent().intersects(p2.getBoundsInParent())  ){
             try {
-                player_fall();
+//                System.out.println("player collided with platform");
+//                player_fall();
 
+                    game_over();
             }
             catch (Exception e){
-                System.out.println("player collided with platform");
 
             }
+
         }
     }
 
@@ -120,7 +122,7 @@ public class GamePlayController implements Initializable {
     }
 
     public void cherry_gen() {
-        int cherry_gen_posi = new Random().nextInt((int)(p1.getLayoutX()+p1.getWidth()),(int)(p2.getLayoutX()-3));
+        int cherry_gen_posi = new Random().nextInt((int)(p1.getLayoutX()+p1.getWidth()),(int)(p2.getLayoutX()-40));
         int red_chance = new Random().nextInt(0, 2);
         int blue_chance = new Random().nextInt(0, 4);
         if (red_chance == 1) {
@@ -131,18 +133,32 @@ public class GamePlayController implements Initializable {
     }
 
     public void blueCherryGen(int posi) {
+        int pos=new Random().nextInt(0, 2);
         BlueCherries.setFitWidth(32);
         BlueCherries.setFitHeight(32);
+        if  (pos==1){
+            BlueCherries.setLayoutY(player.getLayoutY());
+        }
+        else if (pos==0){
+            BlueCherries.setLayoutY(player.getLayoutY()+BlueCherries.getFitHeight());
+        }
         BlueCherries.setLayoutX(posi);
         BlueCherries.setLayoutY(player.getLayoutY());
         ap.getChildren().add(BlueCherries);
     }
 
     public void redCherryGen(int posi) {
+        int pos=new Random().nextInt(0, 2);
         RedCherries.setFitWidth(32);
         RedCherries.setFitHeight(32);
         RedCherries.setLayoutX(posi);
-        RedCherries.setLayoutY(player.getLayoutY());
+        if  (pos==1){
+            RedCherries.setLayoutY(player.getLayoutY());
+        }
+        else if (pos==0){
+            RedCherries.setLayoutY(player.getLayoutY()+RedCherries.getFitHeight());
+        }
+//        RedCherries.setLayoutY(player.getLayoutY());
         ap.getChildren().add(RedCherries);
 
     }
