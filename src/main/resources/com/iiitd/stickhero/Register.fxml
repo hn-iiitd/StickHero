@@ -11,15 +11,17 @@
             <Image url="@../../../login_back%20(1).png" />
          </image>
       </ImageView>
-        <TextField layoutX="157.0" layoutY="244.0" promptText="Email ID" />
-        <TextField layoutX="157.0" layoutY="291.0" promptText="User ID" />
-        <TextField layoutX="157.0" layoutY="336.0" promptText="Password" />
-        <TextField layoutX="157.0" layoutY="373.0" promptText="Confirm Password" />
+        <TextField fx:id="Email_ID" layoutX="157.0" layoutY="244.0" promptText="Email ID" />
+        <TextField fx:id="User_ID" layoutX="157.0" layoutY="291.0" promptText="User ID" />
+        <TextField fx:id="Password" layoutX="157.0" layoutY="336.0" promptText="Password" />
+        <TextField fx:id="Confirm_Password" layoutX="157.0" layoutY="373.0" promptText="Confirm Password" />
         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="157.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../profile.png" />
             </image>
         </ImageView>
         <Button layoutX="200.0" layoutY="440.0" mnemonicParsing="false" onAction="#switchTologin" text="SIGN-UP" />
+      <Label fx:id="UserIDexists" layoutX="327.0" layoutY="298.0" prefHeight="18.0" prefWidth="117.0" textFill="#df1515" />
+      <Label fx:id="match_passwords" layoutX="327.0" layoutY="376.0" prefHeight="18.0" prefWidth="117.0" textFill="#df1515" />
     </children>
 </AnchorPane>

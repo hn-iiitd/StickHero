@@ -274,6 +274,7 @@ public class GamePlayController implements Initializable {
                 player_walking = true;
 
             });
+
             rotation.play();
 //        stick.setY(0);
         }
