@@ -38,7 +38,24 @@ public class StickHero extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        try {
+            if(DataBase.deserialize() == null){
+                Player admin = new Player("Admin","admin","");
+            DataBase.getPlayerList().add(admin);
+            DataBase.serialize(DataBase.getPlayerList());
+
+            }
+            launch();
+        }
+        catch (ClassNotFoundException e) {
+            Player admin = new Player("Admin","admin","");
+            DataBase.getPlayerList().add(admin);
+            DataBase.serialize(DataBase.getPlayerList());
+            launch();
+        }
+        catch (IOException e) {
+            System.out.println("File Does not exists");;
+        }
     }
 }

@@ -60,8 +60,13 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Player admin = new Player("Admin","admin","");
-        DataBase.getPlayerList().add(admin);
+        try {
+            DataBase.setPlayerList(DataBase.deserialize());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         new LoginController();
         //adding admin
     }

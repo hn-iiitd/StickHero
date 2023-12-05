@@ -31,9 +31,16 @@ public class RegisterController {
 
 
 
-    public void switchTologin(ActionEvent event) throws IOException {
+    public void switchTologin(ActionEvent event) throws IOException, ClassNotFoundException {
+        try {
+            DataBase.setPlayerList(DataBase.deserialize());
+        }
+        catch (Exception e){
+            System.out.println("Database Not found");
+        }
         if(check_AvailableUserID(User_ID.getText()) && passwords_matched(Password.getText(),Confirm_Password.getText())){
             DataBase.getPlayerList().add(new Player(Email_ID.getText(),User_ID.getText(),Password.getText()));
+            DataBase.serialize(DataBase.getPlayerList());
             root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
