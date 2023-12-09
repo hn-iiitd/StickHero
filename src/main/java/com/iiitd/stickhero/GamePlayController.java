@@ -215,45 +215,6 @@ public void switchToPause(MouseEvent event) throws IOException {
     stage.setScene(scene);
     stage.show();
 }
-//    public void storing_values(){
-//        try {
-//            DataBase.setPlayerList(DataBase.deserialize());
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        for(Player p : DataBase.getPlayerList()){
-//
-//            if(p.getUserId().equals(username)){
-////                return true;
-//                p.setRed_cherry(Integer.parseInt(RedCherryCount.getText()));
-//                p.setBlue_cherry(Integer.parseInt(BlueCherryCount.getText()));
-//                p.setCurr_score(Integer.parseInt(current_score.getText()));
-//                if (p.getPlayer_highestScore()<Integer.parseInt(current_score.getText())){
-//                    p.setPlayer_highestScore(Integer.parseInt(current_score.getText()));
-//                }
-//                System.out.println("hello");
-//            }
-//        }
-//
-//    }
-//    public void space_pressed(KeyEvent e){
-//        System.out.println("d   ");
-//        if (e.getCode()==KeyCode.SPACE && player_walking){
-//            double pivot_x_player = player.getX()+ player.getFitWidth();
-//            double pivot_y_player = player.getY()+player.getFitHeight();
-//            Rotate rotate = new Rotate(0, pivot_x_player, pivot_y_player);
-//            player.getTransforms().add(rotate);
-//
-//            rotation2 = new Timeline(
-//                    new KeyFrame(Duration.millis(1), new KeyValue(rotate.angleProperty(), -180))
-//            );
-//            rotation2.play();
-//
-//        }
-//    }
     @FXML
     public void handleMousePressed(MouseEvent event1) {
         System.out.println(StickHero.user.getUsername());
@@ -428,12 +389,12 @@ public void switchToPause(MouseEvent event) throws IOException {
 
     public void game_over() throws IOException {
 //        storing_values();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("game_over.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Revive.fxml"));
         Parent root = loader.load();
-        System.out.println(RedCherryCount.getText());
+//        System.out.println(RedCherryCount.getText());
         // Access the controller of the loaded FXML
-        GameOverController over = loader.getController();
-        over.set_data(Integer.parseInt(RedCherryCount.getText()),
+        ReviveController revive = loader.getController();
+        revive.set_data(Integer.parseInt(RedCherryCount.getText()),
                 Integer.parseInt(BlueCherryCount.getText()),
                 Integer.parseInt(current_score.getText()));
 //        over.setscore( Integer.parseInt(current_score.getText()));
