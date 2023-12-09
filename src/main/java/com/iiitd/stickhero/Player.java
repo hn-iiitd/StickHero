@@ -3,6 +3,7 @@ package com.iiitd.stickhero;
 import java.io.Serializable;
 
 public class Player implements Serializable {
+    private static final long serialVersionUID = 3863198867581910777L;
     private GameMain game = null;
     private String name;
 
@@ -10,6 +11,34 @@ public class Player implements Serializable {
         this.name = name;
         this.userId = userId;
         this.password = password;
+    }
+    private int red_cherry;
+
+    public int getBlue_cherry() {
+        return blue_cherry;
+    }
+
+    public void setBlue_cherry(int blue_cherry) {
+        this.blue_cherry = blue_cherry;
+    }
+
+    private int blue_cherry;
+    private int curr_score;
+
+    public int getCurr_score() {
+        return curr_score;
+    }
+
+    public void setCurr_score(int curr_score) {
+        this.curr_score = curr_score;
+    }
+
+    public int getRed_cherry() {
+        return red_cherry;
+    }
+
+    public void setRed_cherry(int red_cherry) {
+        this.red_cherry = red_cherry;
     }
 
     private String userId;

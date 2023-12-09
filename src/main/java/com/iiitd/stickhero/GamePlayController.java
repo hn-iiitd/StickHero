@@ -42,11 +42,21 @@ public class GamePlayController implements Initializable {
     private Label current_score;
     @FXML
     private Stage stage;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @FXML
     private Scene scene;
     private Parent root;
     @FXML
     private Rectangle stick;
+    private String username=StickHero.user.getUsername();
 
     private ImageView BlueCherries = new ImageView(new Image(new FileInputStream("src/main/resources/[removal.ai]_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png")));
 
@@ -97,9 +107,7 @@ public class GamePlayController implements Initializable {
             else if(Cherries.equals(BlueCherries)){
                 BlueCherryCount.setText(String.valueOf(Integer.parseInt(BlueCherryCount.getText()) +1));
             }
-
         }
-
     }
     private void checkCollisionPlat(ImageView player, Rectangle p2) throws IOException {
         if(player_walking && isManDown && player.getBoundsInParent().intersects(p2.getBoundsInParent())  ){
@@ -164,6 +172,8 @@ public class GamePlayController implements Initializable {
     }
 
 
+
+
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -171,7 +181,58 @@ public class GamePlayController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+//    public void switchToPause(MouseEvent event) throws IOException {
+//        FXMLLoader loader=FXMLLoader.load(getClass().getResource("pause.fxml"));
+//        root=loader.load();
+//        PauseMenuController pause_menu=new PauseMenuController();
+//        pause_menu.set_data(Integer.parseInt(RedCherryCount.getText()),Integer.parseInt(BlueCherryCount.getText()),Integer.parseInt(current_score.getText()));
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+public void switchToPause(MouseEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("pause.fxml"));
+    Parent root = loader.load();
 
+    // Access the controller of the loaded FXML
+    PauseMenuController pause_menu = loader.getController();
+    pause_menu.set_data(Integer.parseInt(RedCherryCount.getText()),
+            Integer.parseInt(BlueCherryCount.getText()),
+            Integer.parseInt(current_score.getText()));
+
+    // Assuming 'root' is a Parent or Region, set it as the root of the scene
+    Scene scene = new Scene(root);
+
+    // Access the stage from the event's source
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+}
+//    public void storing_values(){
+//        try {
+//            DataBase.setPlayerList(DataBase.deserialize());
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        for(Player p : DataBase.getPlayerList()){
+//
+//            if(p.getUserId().equals(username)){
+////                return true;
+//                p.setRed_cherry(Integer.parseInt(RedCherryCount.getText()));
+//                p.setBlue_cherry(Integer.parseInt(BlueCherryCount.getText()));
+//                p.setCurr_score(Integer.parseInt(current_score.getText()));
+//                if (p.getPlayer_highestScore()<Integer.parseInt(current_score.getText())){
+//                    p.setPlayer_highestScore(Integer.parseInt(current_score.getText()));
+//                }
+//                System.out.println("hello");
+//            }
+//        }
+//
+//    }
 //    public void space_pressed(KeyEvent e){
 //        System.out.println("d   ");
 //        if (e.getCode()==KeyCode.SPACE && player_walking){
@@ -189,6 +250,7 @@ public class GamePlayController implements Initializable {
 //    }
     @FXML
     public void handleMousePressed(MouseEvent event1) {
+        System.out.println(StickHero.user.getUsername());
         stick.getParent().requestFocus();
         if (!stick_made && !player_walking) {
             if (event1.isPrimaryButtonDown()) {
@@ -359,6 +421,7 @@ public class GamePlayController implements Initializable {
     }
 
     public void game_over() throws IOException {
+//        storing_values();
         root = FXMLLoader.load(getClass().getResource("game_over.fxml"));
         stage = (Stage) player.getScene().getWindow();
         scene = new Scene(root);

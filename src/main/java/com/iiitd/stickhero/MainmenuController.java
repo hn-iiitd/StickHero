@@ -34,6 +34,7 @@ public class MainmenuController
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void switchToAfterPLay(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AfterPLAYClicking.fxml"));

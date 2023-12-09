@@ -13,10 +13,9 @@ import java.util.TreeSet;
 
 public class StickHero extends Application {
 
-
+    static Username_share user=new Username_share();
 
     @Override
-
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -41,21 +40,22 @@ public class StickHero extends Application {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         try {
             if(DataBase.deserialize() == null){
-                Player admin = new Player("Admin","admin","");
+                Player admin = new Player("Admin","admin","1234");
             DataBase.getPlayerList().add(admin);
             DataBase.serialize(DataBase.getPlayerList());
-
             }
             launch();
         }
         catch (ClassNotFoundException e) {
-            Player admin = new Player("Admin","admin","");
+            Player admin = new Player("Admin","admin","1234");
             DataBase.getPlayerList().add(admin);
             DataBase.serialize(DataBase.getPlayerList());
             launch();
         }
+
         catch (IOException e) {
-            System.out.println("File Does not exists");;
+            e.printStackTrace();
+//            System.out.println(e.getMessage());
         }
     }
 }

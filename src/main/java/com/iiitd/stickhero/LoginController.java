@@ -16,18 +16,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+//    private Username_share username_share=StickHero.user;
     @FXML
     private Label InvalidCred;
     @FXML
     private TextField Username;
     @FXML
     private TextField Password;
+    private String username;
     private Stage stage;
     private Scene scene;
     private Parent root;
     public boolean login(String Username,String Password){
         for(Player p : DataBase.getPlayerList()){
             if(p.getUserId().equals(Username) && p.getPassword().equals(Password)){
+
                 return true;
             }
         }
@@ -45,11 +48,25 @@ public class LoginController implements Initializable {
     }
     public void switchToMainmenu(ActionEvent event) throws IOException {
         if(login(Username.getText(),Password.getText())) {
-            root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
+
+            username = Username.getText();
+            StickHero.user.setUsername(username);
+//            // Load GamePlayController
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewGame.fxml"));
+//            root = loader.load();
+//            GamePlayController gamePlayController = loader.getController();
+//            gamePlayController.setUsername(username);
+
+            // Load Mainmenu.fxml
+            FXMLLoader mainMenuLoader = new FXMLLoader(getClass().getResource("Mainmenu.fxml"));
+            Parent mainMenuRoot = mainMenuLoader.load();
+
+            // Set up the stage and scene
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            scene = new Scene(mainMenuRoot); // Use mainMenuRoot instead of root
             stage.setScene(scene);
             stage.show();
+
         }
         else{
             Username.setText("");

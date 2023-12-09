@@ -32,6 +32,7 @@ public class DataBase{
             return (ArrayList<Player>) in.readObject();
         }
         catch (FileNotFoundException | NullPointerException ignored){
+            System.out.println(ignored.getMessage());
             return null;
         }
     }
