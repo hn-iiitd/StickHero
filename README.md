@@ -3,6 +3,11 @@
 
 For the AP course project, we needed to implement a game inspired by Stick Hero using JavaFX and object-oriented programming (OOP) concepts. The game should emulate the core mechanics of Stick Hero while adding our own creative twist.
 
+## Group 30
+
+- Guneet Pal Singh (2022190)
+- Harsh Nangia (2022199)
+
 ## How to compile
 - Open terminal in the folder containing the project [StickHero]
 - Run **mvn clean**
