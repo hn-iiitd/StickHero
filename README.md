@@ -42,7 +42,7 @@ For the AP course project, we needed to implement a game inspired by Stick Hero 
 - Design patterns 
   - **Singleton** - We used Singleton design pattern in the character object so that only one object of Char class is made.
   - **Flyweight** - We used Flyweight design pattern in login system so that no two people have same UserID.
-- JUnit
+- JUnit (StickHeroTest.java)
     -  We have Implemented JUnit tests to test the sorting of the arraylist of the players using the comparator interface based on their scores.
     - We have impleted JUnit tests to check if the new user is not able to  register with an already existing ID.
 
