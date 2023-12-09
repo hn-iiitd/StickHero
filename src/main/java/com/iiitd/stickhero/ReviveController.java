@@ -17,14 +17,16 @@ public class ReviveController {
     private Parent root;
     private int RedCherryCount;
     private int BlueCherryCount;
+    private int best;
     private int score;
     @FXML
     private Label error;
 
-    public void set_data(int red,int blue,int score){
+    public void set_data(int red, int blue, int score, int best){
         this.BlueCherryCount=blue;
         this.RedCherryCount=red;
         this.score=score;
+        this.best=best;
 //        final_score.setText(String.valueOf(score));
     }
 
@@ -52,7 +54,7 @@ public class ReviveController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("game_over.fxml"));
         Parent root = loader.load();
         GameOverController revive = loader.getController();
-        revive.set_data(RedCherryCount, BlueCherryCount, score);
+        revive.set_data(RedCherryCount, BlueCherryCount, score,best);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

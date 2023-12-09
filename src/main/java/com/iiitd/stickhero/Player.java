@@ -7,7 +7,7 @@ public class Player implements Serializable {
     private GameMain game = null;
     private String name;
 
-    private int character_img=1;
+    private int character_img=0;
 
     public int getCharacter_img() {
         return character_img;

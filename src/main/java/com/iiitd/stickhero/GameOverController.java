@@ -19,17 +19,19 @@ public class GameOverController {
     private int BlueCherryCount;
     private int score;
     private Stage stage;
-
+    @FXML
+    private Label highScore;
 
 
     @FXML
     private Scene scene;
     private Parent root;
-    public void set_data(int red,int blue,int score){
+    public void set_data(int red, int blue, int score, int best){
         this.BlueCherryCount=blue;
         this.RedCherryCount=red;
         this.score=score;
         final_score.setText(String.valueOf(score));
+        highScore.setText(String.valueOf(best));
     }
     public void storing_values() throws IOException {
         try {
@@ -69,6 +71,14 @@ public class GameOverController {
     }
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToLeader(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

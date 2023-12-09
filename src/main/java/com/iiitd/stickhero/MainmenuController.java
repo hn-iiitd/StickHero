@@ -89,7 +89,8 @@ public class MainmenuController implements Initializable
         mediaPlayer.play();
     }
 
-    public void switchToLeaderboard(ActionEvent event) throws IOException{
+    public void switchToLeaderboard(MouseEvent event) throws IOException{
+        mediaPlayer.stop();
         root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

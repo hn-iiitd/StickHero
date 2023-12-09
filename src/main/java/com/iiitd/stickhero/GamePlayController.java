@@ -77,6 +77,7 @@ public class GamePlayController implements Initializable {
     Timeline timeline;
     Timeline rotation;
     Timeline rotation2;
+    private int best;
     private double current_platform_length;
     private static int currentScore;
     private MediaPlayer footstep;
@@ -85,6 +86,7 @@ public class GamePlayController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for(Player p : DataBase.getPlayerList()){
             if(p.getUserId().equals(username)){
+                best=p.getPlayer_highestScore();
                 changeImage(p.getCharacter_img());
             }
         }
@@ -135,6 +137,7 @@ public class GamePlayController implements Initializable {
         BlueCherryCount.setText(String.valueOf(blue));
         current_score.setText(String.valueOf(score));
 
+
     }
     private void checkCollision(ImageView Cherries, ImageView player) {
         if(ap.getChildren().contains(Cherries) && player.getBoundsInParent().intersects(Cherries.getBoundsInParent())){
@@ -142,6 +145,7 @@ public class GamePlayController implements Initializable {
             ap.getChildren().remove(Cherries);
             if(Cherries.equals(RedCherries)){
                 RedCherryCount.setText(String.valueOf(Integer.parseInt(RedCherryCount.getText()) +1));
+                current_score.setText(String.valueOf(Integer.parseInt(current_score.getText()) +1));
             }
             else if(Cherries.equals(BlueCherries)){
                 BlueCherryCount.setText(String.valueOf(Integer.parseInt(BlueCherryCount.getText()) +1));
@@ -184,7 +188,7 @@ public class GamePlayController implements Initializable {
             BlueCherries.setLayoutY(player.getLayoutY());
         }
         else if (pos==0){
-            BlueCherries.setLayoutY(player.getLayoutY()+BlueCherries.getFitHeight());
+            BlueCherries.setLayoutY(player.getLayoutY()+BlueCherries.getFitHeight()+15);
         }
         BlueCherries.setLayoutX(posi);
         BlueCherries.setLayoutY(player.getLayoutY());
@@ -200,7 +204,7 @@ public class GamePlayController implements Initializable {
             RedCherries.setLayoutY(player.getLayoutY());
         }
         else if (pos==0){
-            RedCherries.setLayoutY(player.getLayoutY()+RedCherries.getFitHeight());
+            RedCherries.setLayoutY(player.getLayoutY()+RedCherries.getFitHeight()+10);
         }
 //        RedCherries.setLayoutY(player.getLayoutY());
         ap.getChildren().add(RedCherries);
@@ -387,7 +391,7 @@ public void switchToPause(MouseEvent event) throws IOException {
         ReviveController revive = loader.getController();
         revive.set_data(Integer.parseInt(RedCherryCount.getText()),
                 Integer.parseInt(BlueCherryCount.getText()),
-                Integer.parseInt(current_score.getText()));
+                Integer.parseInt(current_score.getText()),best);
         Scene scene = new Scene(root);
         Stage stage = (Stage) player.getScene().getWindow();
         stage.setScene(scene);
