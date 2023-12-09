@@ -28,7 +28,6 @@ public class PauseMenuController {
         this.BlueCherryCount=blue;
         this.RedCherryCount=red;
         this.score=score;
-
     }
     public void storing_values() throws IOException {
         try {
@@ -40,21 +39,19 @@ public class PauseMenuController {
         }
 
         for(Player p : DataBase.getPlayerList()){
-
             if(p.getUserId().equals(username)){
 //                return true;
-                System.out.println(p.getBlue_cherry());
-                System.out.println(p.getPlayer_highestScore());
-                System.out.println(p.getRed_cherry());
-                System.out.println(score);
-                p.setRed_cherry(BlueCherryCount);
+
+                p.setRed_cherry(RedCherryCount);
                 p.setBlue_cherry(BlueCherryCount);
                 p.setCurr_score(score);
+                System.out.println("new");
+
                 if (p.getPlayer_highestScore()<score){
                     p.setPlayer_highestScore(score);
                 }
                 DataBase.serialize(DataBase.getPlayerList());
-                System.out.println("hello");
+                System.out.println("Progress saved");
             }
         }
 

@@ -47,6 +47,13 @@ public class LoginController implements Initializable {
 
     }
     public void switchToMainmenu(ActionEvent event) throws IOException {
+//        try{
+//            if (Username==null||Password==null){
+//                throw new Username_pswdNull("Either Username is empty or password is empty");
+//            }
+//        } catch (Username_pswdNull e) {
+//            InvalidCred.setText("Username or password can not be empty");
+//        }
         if(login(Username.getText(),Password.getText())) {
 
             username = Username.getText();

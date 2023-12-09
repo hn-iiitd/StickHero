@@ -97,6 +97,12 @@ public class GamePlayController implements Initializable {
     public GamePlayController() throws FileNotFoundException {
     }
 
+    public void setdata(int red,int blue,int score){
+        RedCherryCount.setText(String.valueOf(red));
+        BlueCherryCount.setText(String.valueOf(blue));
+        current_score.setText(String.valueOf(score));
+
+    }
     private void checkCollision(ImageView Cherries, ImageView player) {
         if(ap.getChildren().contains(Cherries) && player.getBoundsInParent().intersects(Cherries.getBoundsInParent())){
 //            System.out.println("Collision");
@@ -194,7 +200,7 @@ public class GamePlayController implements Initializable {
 public void switchToPause(MouseEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("pause.fxml"));
     Parent root = loader.load();
-
+    System.out.println(RedCherryCount.getText());
     // Access the controller of the loaded FXML
     PauseMenuController pause_menu = loader.getController();
     pause_menu.set_data(Integer.parseInt(RedCherryCount.getText()),
@@ -422,11 +428,27 @@ public void switchToPause(MouseEvent event) throws IOException {
 
     public void game_over() throws IOException {
 //        storing_values();
-        root = FXMLLoader.load(getClass().getResource("game_over.fxml"));
-        stage = (Stage) player.getScene().getWindow();
-        scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("game_over.fxml"));
+        Parent root = loader.load();
+        System.out.println(RedCherryCount.getText());
+        // Access the controller of the loaded FXML
+        GameOverController over = loader.getController();
+        over.set_data(Integer.parseInt(RedCherryCount.getText()),
+                Integer.parseInt(BlueCherryCount.getText()),
+                Integer.parseInt(current_score.getText()));
+//        over.setscore( Integer.parseInt(current_score.getText()));
+        // Assuming 'root' is a Parent or Region, set it as the root of the scene
+        Scene scene = new Scene(root);
+
+        // Access the stage from the event's source
+        Stage stage = (Stage) player.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+//        root = FXMLLoader.load(getClass().getResource("game_over.fxml"));
+//        stage = (Stage) player.getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     public void platform_gen() {
