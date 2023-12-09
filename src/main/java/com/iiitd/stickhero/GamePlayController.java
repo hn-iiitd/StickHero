@@ -3,6 +3,8 @@ package com.iiitd.stickhero;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,6 +20,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,6 +32,8 @@ public class GamePlayController implements Initializable {
 
     public boolean Cherries_ON = false;
     private boolean player_walking = false;
+    private MediaPlayer mediaPlayer;
+    private MediaPlayer death;
 
     @FXML
     private AnchorPane ap;
@@ -74,6 +79,40 @@ public class GamePlayController implements Initializable {
     Timeline rotation2;
     private double current_platform_length;
     private static int currentScore;
+    private MediaPlayer footstep;
+    private MediaPlayer kick_stick;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        for(Player p : DataBase.getPlayerList()){
+            if(p.getUserId().equals(username)){
+                changeImage(p.getCharacter_img());
+            }
+        }
+        String audioFile = "src/main/resources/stick_grow_loop.wav"; // Replace with the actual path to your audio file
+        Media sound = new Media(new File(audioFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        String audioFile2 = "src/main/resources/dead.wav";
+        Media sound2 = new Media(new File(audioFile2).toURI().toString());
+        death = new MediaPlayer(sound2);
+
+        String audioFile4 = "src/main/resources/kick_stick.mp3";
+        Media sound4 = new Media(new File(audioFile4).toURI().toString());
+        kick_stick = new MediaPlayer(sound4);
+
+        String audioFile3 = "src/main/resources/footstep.wav";
+        Media sound3 = new Media(new File(audioFile3).toURI().toString());
+        footstep = new MediaPlayer(sound3);
+        footstep.setCycleCount(MediaPlayer.INDEFINITE);
+        try {
+            new GamePlayController();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        timer.start();
+
+    }
 
     AnimationTimer timer = new AnimationTimer() {
         @Override
@@ -211,6 +250,7 @@ public void switchToPause(MouseEvent event) throws IOException {
 }
     @FXML
     public void handleMousePressed(MouseEvent event1) {
+        kick_stick.stop();
         System.out.println(StickHero.user.getUsername());
         stick.getParent().requestFocus();
         if (!stick_made && !player_walking) {
@@ -220,6 +260,7 @@ public void switchToPause(MouseEvent event) throws IOException {
 //                stick.setTranslateX(0);
 //                player.setTranslateX(0);
 //                player.setLayoutX(p1.getWidth()-player.getFitWidth());
+                mediaPlayer.play();
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -245,13 +286,17 @@ public void switchToPause(MouseEvent event) throws IOException {
     }
 
     private void increaseStickHeight() {
+        mediaPlayer.play();
         stick.setHeight(stick.getHeight() + 3);
     }
 
     public void handleMouseReleased(MouseEvent e) {
         if(!player_walking) {
+            mediaPlayer.stop();
             timeline.stop();
+
             player_walking=true;
+            footstep.play();
             double pivot_x = stick.getX();
             double pivot_y = stick.getY();
             Rotate rotate = new Rotate(0, pivot_x, pivot_y);
@@ -262,7 +307,9 @@ public void switchToPause(MouseEvent event) throws IOException {
 
             rotation.setOnFinished(event ->
             {
+                kick_stick.play();
                 double stick_height = stick.getHeight();
+//                kick_stick.stop();
 //        stick.setWidth(stick_height);
 //        stick.setHeight(2);
 
@@ -280,6 +327,7 @@ public void switchToPause(MouseEvent event) throws IOException {
                 stick.setWidth(3);
 //            System.out.println(player.getX());
                 transition.setOnFinished(event2 -> {
+                    footstep.stop();
                     player_walking = false;
                     if (stick_height > (p2.getLayoutX() - p1.getWidth()) && stick_height < (p2.getLayoutX() - p1.getWidth() + p2.getWidth())) {
                         current_score.setText(String.valueOf(Integer.parseInt(current_score.getText()) + 1));
@@ -307,53 +355,6 @@ public void switchToPause(MouseEvent event) throws IOException {
 
     }
 
-
-    //    public void platform_gen() {
-//        double a = Math.random() * (150 - 37 + 1) + 37;
-//
-//
-//        TranslateTransition transition2 = new TranslateTransition();
-//        TranslateTransition transition3 = new TranslateTransition();
-//
-//        transition2.setNode(p2);
-//        transition2.setDuration(Duration.millis(1000));
-//        transition3.setNode(p1);
-//        transition3.setDuration(Duration.millis(1000));
-//
-//        p2.setTranslateX(p2.getLayoutX());
-//        p2.setLayoutX(0);
-//        p1.setTranslateX(0);
-////        p1.setLayoutX();
-////    p1.setWidth(0);
-//        transition2.setToX(0);
-//        transition3.setToX(-p1.getWidth());
-////        p1.setLayoutX(0);
-//        transition2.setOnFinished(event -> {
-//            p1.setWidth(p2.getWidth());
-//            p1.setLayoutX(0);
-//            p1.setTranslateX(0);
-//            p2.setWidth(a);
-////            p2.setLayoutX(p1.getWidth());
-//            double gap = Math.random() * (250 - 40 + 1) + 40;
-//            p2.setLayoutX(gap + p1.getWidth());
-//            double playerEdgeX = p1.getX() + p1.getWidth();
-//            player.setX(0);
-//            player.setTranslateX(p1.getWidth() - 35);
-////        player.setX(playerEdgeX);
-//            stick.setLayoutX(0);
-//            stick.setTranslateX(playerEdgeX);
-//            System.out.println(p1.getWidth());
-//            player.getParent().requestLayout();
-//            stick_made = false;
-//
-//            // You can perform additional actions here after the transition is complete
-//        });
-////        transition3.setOnFinished(event -> {
-////
-////        });
-//        transition2.play();
-//        transition3.play();
-//    }
     public void player_fall() {
 
 //        stick.setHeight(stick.getWidth());
@@ -370,6 +371,7 @@ public void switchToPause(MouseEvent event) throws IOException {
         );
         transition.setOnFinished(event -> {
             try {
+                death.play();
                 game_over();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -382,6 +384,7 @@ public void switchToPause(MouseEvent event) throws IOException {
     }
 
     public void game_over() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Revive.fxml"));
         Parent root = loader.load();
         ReviveController revive = loader.getController();
@@ -430,21 +433,7 @@ public void switchToPause(MouseEvent event) throws IOException {
         }
         player.setImage(newImage);
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(Player p : DataBase.getPlayerList()){
-            if(p.getUserId().equals(username)){
-                changeImage(p.getCharacter_img());
-            }
-        }
-        try {
-            new GamePlayController();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
-        timer.start();
 
-    }
 
 
     // After the first transition, move the platform back

@@ -44,30 +44,11 @@ public class ContinueGameMenuController implements Initializable {
                 game.setdata(p.getRed_cherry(),p.getBlue_cherry(),p.getCurr_score());
             }
         }
-
-
-        // Assuming 'root' is a Parent or Region, set it as the root of the scene
         Scene scene = new Scene(root);
-
-        // Access the stage from the event's source
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
-//    public void switchToSavedGame(ActionEvent event) throws IOException {
-//        for(Player p : DataBase.getPlayerList()){
-//
-//            if(p.getUserId().equals(StickHero.user.getUsername())){
-////                return true;
-//                System.out.println(p.getBlue_cherry());
-//                System.out.println(p.getPlayer_highestScore());
-//                System.out.println(p.getRed_cherry());
-//                System.out.println(p.getCurr_score());}}
-//        root = FXMLLoader.load(getClass().getResource("NewGame.fxml"));
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
     public void switchToMainMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
