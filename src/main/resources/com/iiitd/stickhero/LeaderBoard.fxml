@@ -19,7 +19,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TableView fx:id="leaderboard_table" layoutX="46.0" layoutY="116.0" prefHeight="393.0" prefWidth="379.0">
+      <TableView fx:id="leaderboard_table" layoutX="42.0" layoutY="132.0" prefHeight="393.0" prefWidth="379.0">
         <columns>
           <TableColumn fx:id="player_name" prefWidth="224.20000076293945" text="Player Name" />
           <TableColumn fx:id="player_score" prefWidth="154.20001220703125" text="Score" />
@@ -28,6 +28,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="29.0" layoutY="528.0" mnemonicParsing="false" onMousePressed="#switchToMenu" text="Main Menu" />
+      <Button layoutX="28.0" layoutY="539.0" mnemonicParsing="false" onMousePressed="#switchToMenu" text="Main Menu" />
    </children>
 </AnchorPane>

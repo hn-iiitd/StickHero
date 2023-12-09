@@ -151,9 +151,6 @@ public class GamePlayController implements Initializable {
     private void checkCollisionPlat(ImageView player, Rectangle p2) throws IOException {
         if(player_walking && isManDown && player.getBoundsInParent().intersects(p2.getBoundsInParent())  ){
             try {
-//                System.out.println("player collided with platform");
-//                player_fall();
-
                     game_over();
             }
             catch (Exception e){
