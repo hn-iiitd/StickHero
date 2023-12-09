@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" onMouseClicked="#handleMousePressed" prefHeight="593.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
+<AnchorPane fx:id="ap" onMouseClicked="#handleMousePressed" prefHeight="593.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.GamePlayController">
    <children>
       <ImageView fx:id="img" fitHeight="607.0" fitWidth="463.0" layoutY="-2.0" onMousePressed="#handleMousePressed" onMouseReleased="#handleMouseReleased" pickOnBounds="true">
          <image>
-            <Image url="@../../../back%20(1).jpg" />
+            <Image url="@../../../back(1).jpg" />
          </image>
       </ImageView>
       <Rectangle fx:id="p1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutY="437.0" stroke="BLACK" width="90.0" />
@@ -39,7 +40,7 @@
       <Label fx:id="RedCherryCount" layoutX="407.0" layoutY="35.0" text="0" textFill="WHITE" />
       <ImageView fitHeight="34.0" fitWidth="28.0" layoutX="364.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../%5Bremoval.ai%5D_91ab9a1d-43f7-43d2-86a4-328342ef7de1-84739960-cherry-vector-line-icon-isolated-on-white-background-cherry-line-icon-for-infographic-website-or-app.png" />
+            <Image url="@../../../blue_cherry.png" />
          </image>
       </ImageView>
       <Label fx:id="BlueCherryCount" layoutX="356.0" layoutY="35.0" text="0" textFill="WHITE" />

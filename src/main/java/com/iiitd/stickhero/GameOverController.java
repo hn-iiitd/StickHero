@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -77,7 +78,7 @@ public class GameOverController {
         stage.show();
     }
 
-    public void switchToLeader(ActionEvent event) throws IOException {
+    public void switchToLeader(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
