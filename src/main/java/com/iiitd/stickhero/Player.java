@@ -120,14 +120,6 @@ public class Player implements Serializable {
         this.number_of_lives = number_of_lives;
     }
 
-//    public int getPlayer_currentScore() {
-//        return player_currentScore;
-//    }
-
-//    public void setPlayer_currentScore(int player_currentScore) {
-//        this.player_currentScore = player_currentScore;
-//    }
-
     public int getPlayer_highestScore() {
         return player_highestScore;
     }

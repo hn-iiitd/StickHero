@@ -47,30 +47,16 @@ public class LoginController implements Initializable {
 
     }
     public void switchToMainmenu(ActionEvent event) throws IOException {
-//        try{
-//            if (Username==null||Password==null){
-//                throw new Username_pswdNull("Either Username is empty or password is empty");
-//            }
-//        } catch (Username_pswdNull e) {
-//            InvalidCred.setText("Username or password can not be empty");
-//        }
         if(login(Username.getText(),Password.getText())) {
 
             username = Username.getText();
             StickHero.user.setUsername(username);
-//            // Load GamePlayController
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewGame.fxml"));
-//            root = loader.load();
-//            GamePlayController gamePlayController = loader.getController();
-//            gamePlayController.setUsername(username);
 
-            // Load Mainmenu.fxml
+
             FXMLLoader mainMenuLoader = new FXMLLoader(getClass().getResource("Mainmenu.fxml"));
             Parent mainMenuRoot = mainMenuLoader.load();
-
-            // Set up the stage and scene
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(mainMenuRoot); // Use mainMenuRoot instead of root
+            scene = new Scene(mainMenuRoot);
             stage.setScene(scene);
             stage.show();
 
@@ -97,7 +83,7 @@ public class LoginController implements Initializable {
             throw new RuntimeException(e);
         }
         new LoginController();
-        //adding admin
+
     }
 
 }

@@ -290,7 +290,7 @@ public class GamePlayController implements Initializable ,Runnable{
     public void switchToPause(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("pause.fxml"));
         Parent root = loader.load();
-        System.out.println(RedCherryCount.getText());
+//        System.out.println(RedCherryCount.getText());
         // Access the controller of the loaded FXML
         PauseMenuController pause_menu = loader.getController();
         pause_menu.set_data(Integer.parseInt(RedCherryCount.getText()),
@@ -309,15 +309,11 @@ public class GamePlayController implements Initializable ,Runnable{
     @FXML
     public void handleMousePressed(MouseEvent event1) {
         kick_stick.stop();
-        System.out.println(StickHero.user.getUsername());
         stick.getParent().requestFocus();
         if (!stick_made && !player_walking) {
             if (event1.isPrimaryButtonDown()) {
                 stick.setHeight(0);
                 stick.setWidth(3);
-//                stick.setTranslateX(0);
-//                player.setTranslateX(0);
-//                player.setLayoutX(p1.getWidth()-player.getFitWidth());
                 mediaPlayer.play();
                 timeline = new Timeline(new KeyFrame(
                         Duration.millis(10), event -> increaseStickHeight()));
@@ -337,7 +333,7 @@ public class GamePlayController implements Initializable ,Runnable{
             rotation2.play();
             isManDown = !isManDown;
         } else {
-            System.out.println("yoyo");
+            System.out.println(" ");
         }
 
     }
@@ -366,11 +362,6 @@ public class GamePlayController implements Initializable ,Runnable{
             {
                 kick_stick.play();
                 double stick_height = stick.getHeight();
-//                kick_stick.stop();
-//        stick.setWidth(stick_height);
-//        stick.setHeight(2);
-
-//            System.out.println(stick.getX() + " + " + stick.getLayoutX());
 
                 TranslateTransition transition = new TranslateTransition();
                 transition.setNode(player);
@@ -382,7 +373,6 @@ public class GamePlayController implements Initializable ,Runnable{
                     transition.setToX(stick_height);
                 }
                 stick.setWidth(3);
-//            System.out.println(player.getX());
                 transition.setOnFinished(event2 -> {
                     footstep.stop();
                     player_walking = false;
@@ -412,10 +402,6 @@ public class GamePlayController implements Initializable ,Runnable{
     }
 
     public void player_fall() {
-
-//        stick.setHeight(stick.getWidth());
-
-//        stick.setY(stick.getY()+stick.getHeight());
         TranslateTransition transition = new TranslateTransition(Duration.millis(950), player);
         transition.setToY(player.getTranslateY() + p1.getHeight());
         double pivot_x = stick.getX();
@@ -482,8 +468,6 @@ public class GamePlayController implements Initializable ,Runnable{
 
         parallelTransition.getChildren().addAll(transition2, playerTransition);
         parallelTransition.play();
-//        transition2.play();
-//        playerTransition.play();
     }
 
     public void changeImage(int choice) {

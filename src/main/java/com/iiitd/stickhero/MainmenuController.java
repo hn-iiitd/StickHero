@@ -82,7 +82,7 @@ public class MainmenuController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String audioFile = "src/main/resources/main_menu.mp3"; // Replace with the actual path to your audio file
+        String audioFile = "src/main/resources/main_menu.mp3";
         Media sound = new Media(new File(audioFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
