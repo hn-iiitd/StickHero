@@ -58,4 +58,13 @@ public class MainmenuController
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    public void switchToCharacter(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ChangeChar.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

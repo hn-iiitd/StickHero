@@ -65,7 +65,8 @@ public class PauseMenuController {
         stage.setScene(scene);
         stage.show();
     }
-    public void exit(MouseEvent event) throws IOException {
+
+    public void exit(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

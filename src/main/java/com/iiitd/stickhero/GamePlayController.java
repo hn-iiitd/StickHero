@@ -2,25 +2,19 @@ package com.iiitd.stickhero;
 
 import javafx.animation.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.Blend;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Transform;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -388,28 +382,16 @@ public void switchToPause(MouseEvent event) throws IOException {
     }
 
     public void game_over() throws IOException {
-//        storing_values();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Revive.fxml"));
         Parent root = loader.load();
-//        System.out.println(RedCherryCount.getText());
-        // Access the controller of the loaded FXML
         ReviveController revive = loader.getController();
         revive.set_data(Integer.parseInt(RedCherryCount.getText()),
                 Integer.parseInt(BlueCherryCount.getText()),
                 Integer.parseInt(current_score.getText()));
-//        over.setscore( Integer.parseInt(current_score.getText()));
-        // Assuming 'root' is a Parent or Region, set it as the root of the scene
         Scene scene = new Scene(root);
-
-        // Access the stage from the event's source
         Stage stage = (Stage) player.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-//        root = FXMLLoader.load(getClass().getResource("game_over.fxml"));
-//        stage = (Stage) player.getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     public void platform_gen() {
@@ -419,8 +401,6 @@ public void switchToPause(MouseEvent event) throws IOException {
         TranslateTransition transition2 = new TranslateTransition(Duration.millis(1000), p2);
         TranslateTransition playerTransition = new TranslateTransition(Duration.millis(1000),player);
         p2.setTranslateX(p2.getLayoutX());
-//        player.setTranslateX(player.getLayoutX());
-//        player.setLayoutX(p2.getLayoutX());
         p2.setLayoutX(0);
         transition2.setToX(0);
         playerTransition.setToX(p2.getLayoutX());
@@ -432,14 +412,7 @@ public void switchToPause(MouseEvent event) throws IOException {
             current_platform_length = p1.getWidth();
             double gap = Math.random() * (250 - 40 + 1) + 40;
             p2.setLayoutX(gap + p1.getWidth());
-//            double playerEdgeX = p1.getX() + p1.getWidth();
-//            player.setX(0);
-//            player.setTranslateX(0);
             player.setLayoutX(p1.getWidth()-player.getFitWidth()-4);
-//            stick.setTranslateX(0);
-//            stick.setX(0);
-//            stick.setLayoutX(p1.getWidth()+p1.getLayoutX());
-
             player.getParent().requestLayout();
             stick.setX(player.getLayoutX()-player.getFitWidth()-16);
             cherry_gen();
@@ -448,9 +421,22 @@ public void switchToPause(MouseEvent event) throws IOException {
         transition2.play();
         playerTransition.play();
     }
-
+    public void changeImage(int choice) {
+        Image newImage;
+        if (choice==0){
+        newImage = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("StickHero.png")));}
+        else{
+            newImage = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("yoda.png")));
+        }
+        player.setImage(newImage);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        for(Player p : DataBase.getPlayerList()){
+            if(p.getUserId().equals(username)){
+                changeImage(p.getCharacter_img());
+            }
+        }
         try {
             new GamePlayController();
         } catch (FileNotFoundException e) {

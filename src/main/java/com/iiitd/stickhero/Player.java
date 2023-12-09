@@ -7,6 +7,16 @@ public class Player implements Serializable {
     private GameMain game = null;
     private String name;
 
+    private int character_img=1;
+
+    public int getCharacter_img() {
+        return character_img;
+    }
+
+    public void setCharacter_img(int character_img) {
+        this.character_img = character_img;
+    }
+
     public Player(String name, String userId, String password) {
         this.name = name;
         this.userId = userId;

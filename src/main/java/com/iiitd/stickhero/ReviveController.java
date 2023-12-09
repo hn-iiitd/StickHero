@@ -28,6 +28,7 @@ public class ReviveController {
 //        final_score.setText(String.valueOf(score));
     }
 
+    @FXML
     public void switchToNewGame(ActionEvent event) throws IOException {
         if (BlueCherryCount >= 3) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("NewGame.fxml"));
@@ -46,7 +47,7 @@ public class ReviveController {
         }
 
     }
-
+    @FXML
     public void switchToGameOver(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("game_over.fxml"));
         Parent root = loader.load();
@@ -56,17 +57,4 @@ public class ReviveController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void switchToGuide(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Guide.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToMainmenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Mainmenu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     }}

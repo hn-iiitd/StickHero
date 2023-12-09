@@ -24,7 +24,7 @@
             <Image url="@../../../setting.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="46.0" fitWidth="41.0" layoutX="397.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="46.0" fitWidth="41.0" layoutX="397.0" layoutY="513.0" onMousePressed="#switchToCharacter" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../StickHero.png" />
          </image>

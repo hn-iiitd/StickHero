@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.ChangeCharController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="473.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../back2%20(1).jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="106.0" layoutX="85.0" layoutY="211.0" onMousePressed="#ChangeToDefault" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../StickHero.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="123.0" layoutX="266.0" layoutY="200.0" onMousePressed="#ChangeToYoda" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../yoda.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="115.0" layoutY="339.0" text="DEFAULT">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="317.0" layoutY="339.0" text="YODA">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="53.0" text="SELECT YOUR AGENT">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button layoutX="382.0" layoutY="507.0" mnemonicParsing="false" onAction="#switchToMainmenu" text="BACK" />
+      <Label fx:id="message" layoutX="218.0" layoutY="421.0" />
+   </children>
+</AnchorPane>
