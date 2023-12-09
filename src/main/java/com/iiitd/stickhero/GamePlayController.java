@@ -85,7 +85,6 @@ public class GamePlayController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for(Player p : DataBase.getPlayerList()){
             if(p.getUserId().equals(username)){
-
                 changeImage(p.getCharacter_img());
             }
         }
@@ -204,7 +203,7 @@ public class GamePlayController implements Initializable {
             RedCherries.setLayoutY(player.getLayoutY());
         }
         else if (pos==0){
-            RedCherries.setLayoutY(player.getLayoutY()+RedCherries.getFitHeight()+10);
+            RedCherries.setLayoutY(player.getLayoutY()+RedCherries.getFitHeight());
         }
 //        RedCherries.setLayoutY(player.getLayoutY());
         ap.getChildren().add(RedCherries);
@@ -428,12 +427,8 @@ public void switchToPause(MouseEvent event) throws IOException {
     public void changeImage(int choice) {
         Image newImage;
         if (choice==0){
-            Char1.getInstance();
-            Char1.setType(0);
-            newImage = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("StickHero.png")));}
+        newImage = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("StickHero.png")));}
         else{
-            Char2.getInstance();
-            Char2.setType(0);
             newImage = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("yoda.png")));
         }
         player.setImage(newImage);

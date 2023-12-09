@@ -86,6 +86,11 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             DataBase.setPlayerList(DataBase.deserialize());
+            for (Player p : DataBase.getPlayerList()){
+                DataBase.getPlayerHashMap().put(p.getUserId(),p);
+
+            }
+
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -94,23 +99,5 @@ public class LoginController implements Initializable {
         new LoginController();
         //adding admin
     }
-//    public void switchToScene1(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("Main-view.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }public void switchToScene2(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("Main-view.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }public void switchToScene3(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("Main-view.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+
 }

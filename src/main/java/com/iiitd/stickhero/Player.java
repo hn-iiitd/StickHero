@@ -17,11 +17,27 @@ public class Player implements Serializable {
         this.character_img = character_img;
     }
 
-    public Player(String name, String userId, String password) {
+    private Player(String name, String userId, String password) { //flyweight
         this.name = name;
         this.userId = userId;
         this.password = password;
     }
+    public static Player createNewPlayer(String Name, String userId, String password){
+        try {
+            if(DataBase.getPlayerHashMap().containsKey(userId)){
+                throw new UserNameAlreadyExistsException("Username Already Exists");
+            }
+            else{
+                return new Player(Name,userId,password);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+
+    }
+
     private int red_cherry;
 
     public int getBlue_cherry() {

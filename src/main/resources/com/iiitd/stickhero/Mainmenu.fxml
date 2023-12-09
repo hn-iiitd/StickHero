@@ -29,5 +29,10 @@
             <Image url="@../../../StickHero.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="48.0" fitWidth="41.0" layoutX="26.0" layoutY="444.0" onMousePressed="#switchToLeaderboard" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../png-transparent-computer-icons-icon-design-others-miscellaneous-text-logo-thumbnail-removebg-preview.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

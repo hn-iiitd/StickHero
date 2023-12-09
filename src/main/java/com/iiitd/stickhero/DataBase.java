@@ -2,8 +2,18 @@ package com.iiitd.stickhero;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DataBase{
+    public static HashMap<String, Player> getPlayerHashMap() {
+        return playerHashMap;
+    }
+
+    public void setPlayerHashMap(HashMap<String, Player> playerHashMap) {
+        DataBase.playerHashMap = playerHashMap;
+    }
+
+    private static HashMap<String,Player> playerHashMap = new HashMap<>();
     private static ArrayList<Player> playerList = new ArrayList<>();
 
     public static ArrayList<Player> getPlayerList() {

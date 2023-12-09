@@ -39,7 +39,7 @@ public class RegisterController {
             System.out.println("Database Not found");
         }
         if(check_AvailableUserID(User_ID.getText()) && passwords_matched(Password.getText(),Confirm_Password.getText())){
-            DataBase.getPlayerList().add(new Player(Email_ID.getText(),User_ID.getText(),Password.getText()));
+            DataBase.getPlayerList().add(Player.createNewPlayer(Email_ID.getText(),User_ID.getText(),Password.getText()));
             DataBase.serialize(DataBase.getPlayerList());
             root = FXMLLoader.load(getClass().getResource("login.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
