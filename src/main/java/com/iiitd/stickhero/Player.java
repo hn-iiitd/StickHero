@@ -2,6 +2,10 @@ package com.iiitd.stickhero;
 
 import java.io.Serializable;
 
+//----------------------------------//
+//Design Pattern Used -FLYWEIGHT//
+//---------------------------------//
+
 public class Player implements Serializable {
     private static final long serialVersionUID = 3863198867581910777L;
     private GameMain game = null;

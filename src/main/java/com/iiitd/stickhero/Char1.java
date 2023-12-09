@@ -3,6 +3,11 @@ package com.iiitd.stickhero;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
 
+//----------------------------------//
+//Design Pattern Used -SINGLETON//
+//---------------------------------//
+
+
 public class Char1 extends Character{
     private static Char1 char1=null;
     public static Char1 getInstance()
