@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iiitd.stickhero.ChangeCharController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="473.0" pickOnBounds="true" preserveRatio="true">
@@ -41,6 +40,6 @@
          </font>
       </Label>
       <Button layoutX="382.0" layoutY="507.0" mnemonicParsing="false" onAction="#switchToMainmenu" text="BACK" />
-      <Label fx:id="message" layoutX="218.0" layoutY="421.0" />
+      <Label fx:id="message" layoutX="143.0" layoutY="418.0" prefHeight="17.0" prefWidth="178.0" />
    </children>
 </AnchorPane>
