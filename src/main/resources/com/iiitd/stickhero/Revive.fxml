@@ -20,6 +20,7 @@
          </font>
       </Label>
       <Button layoutX="181.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchToNewGame" text="YES" />
-      <Button layoutX="258.0" layoutY="262.0" mnemonicParsing="false" text="NO" />
+      <Button layoutX="258.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchToGameOver" text="NO" />
+      <Label fx:id="error" layoutX="152.0" layoutY="321.0" prefHeight="22.0" prefWidth="194.0" textFill="#d92323" />
    </children>
 </AnchorPane>
