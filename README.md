@@ -7,6 +7,11 @@ For the AP course project, we needed to implement a game inspired by Stick Hero 
 
 - Guneet Pal Singh (2022190)
 - Harsh Nangia (2022199)
+## Main file
+- The main file of the game is `StickHero.java`
+
+## Github Repo link
+- https://github.com/hn-iiitd/StickHero
 
 ## How to compile
 - Open terminal in the folder containing the project [StickHero]
