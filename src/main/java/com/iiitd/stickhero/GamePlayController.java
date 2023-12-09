@@ -286,7 +286,7 @@ public void switchToPause(MouseEvent event) throws IOException {
 
     }
 
-    private void increaseStickHeight() {
+    public void increaseStickHeight() {
         mediaPlayer.play();
         stick.setHeight(stick.getHeight() + 3);
     }

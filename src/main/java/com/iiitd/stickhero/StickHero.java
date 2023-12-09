@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class StickHero extends Application {
+    private static boolean status = false;
 
     static Username_share user=new Username_share();
 
@@ -35,7 +36,9 @@ public class StickHero extends Application {
         stage.show();
 
     }
-
+    public boolean check_if_launch(){
+        return this.status;
+    }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         try {
@@ -44,12 +47,14 @@ public class StickHero extends Application {
             DataBase.getPlayerList().add(admin);
             DataBase.serialize(DataBase.getPlayerList());
             }
+            status = true;
             launch();
         }
         catch (ClassNotFoundException e) {
             Player admin = Player.createNewPlayer("Admin","admin","1234");
             DataBase.getPlayerList().add(admin);
             DataBase.serialize(DataBase.getPlayerList());
+            status = true;
             launch();
         }
 

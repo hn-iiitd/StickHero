@@ -22,6 +22,7 @@ public class Player implements Serializable {
         this.userId = userId;
         this.password = password;
     }
+
     public static Player createNewPlayer(String Name, String userId, String password){
         try {
             if(DataBase.getPlayerHashMap().containsKey(userId)){
