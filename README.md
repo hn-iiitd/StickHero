@@ -7,6 +7,13 @@ For the AP course project, we needed to implement a game inspired by Stick Hero 
 
 - Guneet Pal Singh (2022190)
 - Harsh Nangia (2022199)
+
+## Project Demo
+![Home Screen](images/screenshot1.png)
+![Gameplay1](images/screenshot2.png)
+![GamePlay2](images/screenshot3.png)
+![GamePlay3](images/screenshot4.png)
+
 ## Main file
 - The main file of the game is `StickHero.java`
 
